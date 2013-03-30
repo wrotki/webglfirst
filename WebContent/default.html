@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<title>3d graph</title>
+	<script type="text/javascript" src="https://www.google.com/jsapi?key=ABQIAAAA4b1PxAJN1_fKAzYQ7dOtKhQ6Cd-pViFaMaeogXLd3RqUwbPw3BSSKfOu80UOkxV_OTerIaE99bB6XQ"></script>
+	<!-- set Dojo configuration, load Dojo -->
+    <!-- <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/dojo/1.7.1/dijit/themes/claro/claro.css" media="screen"> -->
+       
+   <script src="/WebGLFirst/BucketServer"></script><!-- gets a dojo config rendered via <script src="dojoconfig.jsp"></script>     -->
+   <script src="//ajax.googleapis.com/ajax/libs/dojo/1.8.1/dojo/dojo.js"></script>    
+<!-- <script src="/WebGLFirst/dojo/dojo.js"></script> -->
+	<script type="text/javascript">
+    require(["scene","dojo/domReady!"],
+            function(scene){
+                scene.animate();
+            }, 3000);
+    </script>
+    
+	<style>
+	    div.hidden{
+	    	display:none;
+	    }
+	    
+	    div.label {
+	    	width: 100px;
+	    	float:left;
+	    }
+	    
+		div.command {
+			display: inline;
+			background-color: blue;
+			width: 220px;
+			float: left;
+			text-align: center;
+			margin-left: auto; 
+	    	margin-right: auto;
+		}
+
+        div {
+            display: block;
+            background-color: green;
+        }
+        
+        canvas {
+            display: block;
+            background-color: gray;
+        }
+	</style>
+</head>
+<body>
+</body>
+</html>
