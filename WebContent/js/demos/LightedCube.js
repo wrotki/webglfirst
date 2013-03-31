@@ -3,7 +3,7 @@ function LightedCube(origin)
 	this.origin = origin;
 }
 
-Shoe.prototype.createMeshes = function(){
+LightedCube.prototype.createMeshes = function(){
     var zmesh =  new THREE.Mesh(
             new THREE.CubeGeometry(50, 50, 50),
             new THREE.MeshLambertMaterial({color: 0xFF0500}));
