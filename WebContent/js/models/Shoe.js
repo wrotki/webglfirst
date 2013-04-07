@@ -2,12 +2,13 @@
 
 function Shoe(origin)
 {
+    var OB = window.OtherBrane;
+    var path = OB.bucketsPath;
+// The model gets loaded by Actor, given the modelUrl 
+    Shoe.prototype.modelUrl = path + "/3d/shoe.js";
 	this.origin = origin;
 }
 
-// The model gets loaded by Actor, given the modelUrl 
-var absolutePath = location.pathname.replace(/\/[^\/]+$/, "");
-Shoe.prototype.modelUrl = absolutePath + "/3d/shoe.js";
 
 Shoe.prototype.createMeshes = function(){
     var zmesh = new THREE.Mesh(Shoe.prototype.model, new THREE.MeshFaceMaterial(Shoe.prototype.materials));

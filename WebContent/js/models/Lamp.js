@@ -3,8 +3,9 @@
 //		THREE.AnimationHandler.add( geometry.animation );
 function Lamp(origin)
 {
-	var absolutePath = location.pathname.replace(/\/[^\/]+$/, "");
-	Lamp.prototype.modelUrl = absolutePath + "/3d/lamp.js";
+    var OB = window.OtherBrane;
+	var path = OB.bucketsPath;
+	Lamp.prototype.modelUrl = path + "/3d/lamp.js";
 	this.origin = origin;	
 }
 
