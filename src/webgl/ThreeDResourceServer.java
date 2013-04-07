@@ -20,7 +20,7 @@ import workqueue.RequestProcessor;
 /**
  * Servlet implementation class HelloWorld
  */
-@WebServlet("/3d/*") // This is correct - disable temporarily to let the default (file) servlet send responses
+//@WebServlet("/3d/*") // This is correct - disable temporarily to let the default (file) servlet send responses
 //@WebServlet("/3d") // Incorrect - intentionally
 public class ThreeDResourceServer extends HttpServlet implements CometProcessor {
 	private static final long serialVersionUID = 1L;

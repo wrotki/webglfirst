@@ -37,7 +37,7 @@ function ThreeDScene(){
 	var scene = this.scene = new THREE.Scene();
     scene.fog = new THREE.Fog( 0xffffff, 1, 100000 );
     
-    var camera = this.camera = new THREE.PerspectiveCamera( 45, w / h, 1, 10000 );
+    var camera = this.camera = new THREE.PerspectiveCamera( 45, w / h, 1, 150000 );
     // camera = new THREE.OrthographicCamera( -1, 1, 1,
 	// -1, 0.1, 100.0 );
     camera.position.x = 200;
