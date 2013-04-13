@@ -107,7 +107,7 @@ ThreeDScene.prototype.update = function() {
 ThreeDScene.prototype.render = function() {
     var delta = this.clock.getDelta();
     this.controls.update( delta );
-    THREE.AnimationHandler.update( delta );
+    THREE.AnimationHandler.update( delta );
     //camera.target.position.copy( this.scene.position );
     this.stats.update();
     this.morphAnimatedMeshes();
