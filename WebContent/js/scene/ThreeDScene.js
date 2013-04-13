@@ -35,7 +35,7 @@ function ThreeDScene(){
     canvasContainer.appendChild( renderer.domElement );
     
 	var scene = this.scene = new THREE.Scene();
-    scene.fog = new THREE.Fog( 0xffffff, 1, 100000 );
+    scene.fog = new THREE.Fog( 0xffffff, 1, 200000 );
     
     var camera = this.camera = new THREE.PerspectiveCamera( 45, w / h, 1, 150000 );
     // camera = new THREE.OrthographicCamera( -1, 1, 1,
@@ -107,7 +107,7 @@ ThreeDScene.prototype.update = function() {
 ThreeDScene.prototype.render = function() {
     var delta = this.clock.getDelta();
     this.controls.update( delta );
-    THREE.AnimationHandler.update( delta );
+    THREE.AnimationHandler.update( delta );
     //camera.target.position.copy( this.scene.position );
     this.stats.update();
     this.morphAnimatedMeshes();

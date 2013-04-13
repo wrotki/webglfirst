@@ -56,7 +56,15 @@ THREE.FlyControls = function ( object, domElement ) {
 
 		switch ( event.keyCode ) {
 
-			case 16: /* shift */ this.movementSpeedMultiplier *= 1.2; break;
+			case 16: /* shift */ if(this.movementSpeedMultiplier < 100.0) { 
+			         this.movementSpeedMultiplier *= 1.2; 
+			     }
+			    break;
+
+            case 17: /* control */ if(this.rotationSpeedMultiplier < 100.0) { 
+                     this.rotationSpeedMultiplier *= 1.5; 
+                 }
+                break;
 
 			case 87: /*W*/ this.moveState.forward = 1; break;
 			case 83: /*S*/ this.moveState.back = 1; break;
@@ -88,6 +96,7 @@ THREE.FlyControls = function ( object, domElement ) {
 		switch( event.keyCode ) {
 
 			case 16: /* shift */ this.movementSpeedMultiplier = 1.0; break;
+            case 17: /* control */ this.rotationSpeedMultiplier *= 1.0; break;
 
 			case 87: /*W*/ this.moveState.forward = 0; break;
 			case 83: /*S*/ this.moveState.back = 0; break;
@@ -218,9 +227,9 @@ THREE.FlyControls = function ( object, domElement ) {
 
 	this.updateRotationVector = function() {
 
-		this.rotationVector.x = ( -this.moveState.pitchDown + this.moveState.pitchUp );
-		this.rotationVector.y = ( -this.moveState.yawRight  + this.moveState.yawLeft );
-		this.rotationVector.z = ( -this.moveState.rollRight + this.moveState.rollLeft );
+		this.rotationVector.x = ( -this.moveState.pitchDown + this.moveState.pitchUp ) * this.rotationSpeedMultiplier;
+		this.rotationVector.y = ( -this.moveState.yawRight  + this.moveState.yawLeft ) * this.rotationSpeedMultiplier;
+		this.rotationVector.z = ( -this.moveState.rollRight + this.moveState.rollLeft ) * this.rotationSpeedMultiplier;
 
 		//console.log( 'rotate:', [ this.rotationVector.x, this.rotationVector.y, this.rotationVector.z ] );
 

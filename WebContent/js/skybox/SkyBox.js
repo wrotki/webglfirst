@@ -5,7 +5,15 @@ function SkyBox(origin){
 	this.origin = origin;
 }
 
+
+// TODO: remove, turns out unnecessary for skybox texture loading
 SkyBox.prototype.loadTextureCube = function(callback){
+        
+    callback();
+};
+
+SkyBox.prototype.createMeshes = function(){
+
     var OB = window.OtherBrane;
     var path = OB.bucketsPath;
 // The model gets loaded by Actor, given the modelUrl 
@@ -14,29 +22,23 @@ SkyBox.prototype.loadTextureCube = function(callback){
     var urls = [ urlPrefix + "posx.jpg", urlPrefix + "negx.jpg",
         urlPrefix + "posy.jpg", urlPrefix + "negy.jpg",
         urlPrefix + "posz.jpg", urlPrefix + "negz.jpg" ];
-        
-    // Need to wait for texture load
-    var uvMapping = new THREE.UVMapping();
-    
-    SkyBox.prototype.textureCube = THREE.ImageUtils.loadTextureCube( urls, uvMapping, callback );
-}
 
-SkyBox.prototype.createMeshes = function(){
-
-    var shader = THREE.ShaderUtils.lib["cube"];
-    var uniforms = THREE.UniformsUtils.clone( shader.uniforms );
-    uniforms['tCube'].texture= SkyBox.prototype.textureCube;   // textureCube has been init before
-    var material = new THREE.ShaderMaterial({
-        fragmentShader    : shader.fragmentShader,
-        vertexShader  : shader.vertexShader,
-        uniforms  : uniforms,
-        depthWrite: false,
-        side: THREE.BackSide
-    });
+    var materialArray = [];
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( SkyBox.prototype.basePath + "/3d/" + "posx.jpg" ) }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( SkyBox.prototype.basePath + "/3d/" + "posy.jpg" ) }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( SkyBox.prototype.basePath + "/3d/" + "posz.jpg" ) }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( SkyBox.prototype.basePath + "/3d/" + "negx.jpg" ) }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( SkyBox.prototype.basePath + "/3d/" + "negy.jpg" ) }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( SkyBox.prototype.basePath + "/3d/" + "negz.jpg" ) }));
+    for (var i = 0; i < 6; i++)
+       materialArray[i].side = THREE.DoubleSide; //THREE.BackSide;
+    var skyboxMaterial = new THREE.MeshFaceMaterial( materialArray );
     
-    // build the skybox Mesh 
-    var zmesh = new THREE.Mesh( new THREE.CubeGeometry( 9000, 9000, 9000, 1, 1, 1, null, true ), material );
-    // add it to the scene
+    var skyboxGeom = new THREE.CubeGeometry( 100000, 100000, 100000, 1, 1, 1 );
+    
+    var skybox = new THREE.Mesh( skyboxGeom, skyboxMaterial );
+    
+    var zmesh = skybox;
     zmesh.position.x = this.origin.x;
     zmesh.position.y = this.origin.y;
     zmesh.position.z = this.origin.z;
