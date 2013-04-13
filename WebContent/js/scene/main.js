@@ -1,4 +1,4 @@
-define(["dojo","dojo/_base/xhr","dijit/Dialog", "scene/three2", 
+define(["dojo","dojo/_base/xhr","dijit/Dialog", "scene/ThreeDebug", 
     "scene/FlyControls", "scene/RequestAnimationFrame","scene/Stats",
     "scene/CameraControls","scene/ThreeDScene","scene/Constants","scene/Actor"
     ],
