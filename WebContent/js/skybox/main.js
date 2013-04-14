@@ -1,5 +1,5 @@
 define(["skybox/SkyBox"], 
-		function(){
+        function(){
             return {
                 initialize : function(scene){
                      SkyBox.prototype.loadTextureCube(function(){
