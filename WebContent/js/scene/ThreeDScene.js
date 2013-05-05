@@ -25,7 +25,7 @@ function ThreeDScene(){
     canvasContainer.style.zIndex = 10;
 	dojo.doc.body.appendChild( canvasContainer );
 
-    var renderer = this.renderer = new THREE.WebGLRenderer({antialias: true});
+    var renderer = this.renderer = new THREE.WebGLRenderer();
     renderer.sortObjects = false;
     renderer.setSize( w, h );
     renderer.domElement.style.position = 'absolute';
@@ -35,20 +35,20 @@ function ThreeDScene(){
     canvasContainer.appendChild( renderer.domElement );
     
 	var scene = this.scene = new THREE.Scene();
-    scene.fog = new THREE.Fog( 0xffffff, 1, 200000 );
+    scene.fog = new THREE.Fog( 0xffffff, 1, 100000 );
     
     var camera = this.camera = new THREE.PerspectiveCamera( 45, w / h, 1, 150000 );
     // camera = new THREE.OrthographicCamera( -1, 1, 1,
 	// -1, 0.1, 100.0 );
-    camera.position.x = 200;
-    camera.position.y = -30;
-    camera.position.z = 10;
+    camera.position.x = 0;
+    camera.position.y = 100;
+    camera.position.z = 1000;
+    camera.lookAt(scene.position);
     
-    //camera.lookAt(scene.position);
     //camera.target.position.copy( scene.position );
     //camera.lookAt(new THREE.Vector3( 0, 0, 0 ));
     //camera.rotation.y = -90 * (Math.PI / 180);
-    this.scene.add( camera );
+    //this.scene.add( camera );
     
     var light = new THREE.DirectionalLight();
     //light.color = 0x00FFFF;
@@ -84,8 +84,16 @@ function ThreeDScene(){
 		this.controls = fpControls;
 	} else{
 		this.controls = flyControls;
-	}	this.actors = [];
+	}
+
+	this.actors = [];
 	this.animations = [];
+	
+	var geometry = new THREE.CubeGeometry( 200, 200, 200 );
+    var material = new THREE.MeshBasicMaterial( { color: 0xff0000, wireframe: true } );
+
+    var mesh = new THREE.Mesh( geometry, material );
+    scene.add( mesh );
 }
 
 // Main animation loop
@@ -107,10 +115,11 @@ ThreeDScene.prototype.update = function() {
 ThreeDScene.prototype.render = function() {
     var delta = this.clock.getDelta();
     this.controls.update( delta );
-    THREE.AnimationHandler.update( delta );
+    THREE.AnimationHandler.update( delta );
+
     //camera.target.position.copy( this.scene.position );
     this.stats.update();
-    this.morphAnimatedMeshes();
+    //this.morphAnimatedMeshes();
 
     this.renderer.render( this.scene, this.camera );
 };
