@@ -57,10 +57,10 @@ public class BucketServer extends HttpServlet implements CometProcessor {
         if (event.getEventType() == CometEvent.EventType.BEGIN) {
 
         	// TODO guard against races
-            if (applicationContext == null){
-                System.out.println("setting context in get");
-                applicationContext = WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());
-            }
+//            if (applicationContext == null){
+//                System.out.println("setting context in get");
+//                applicationContext = WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());
+//            }
             if (applicationContext == null){
                 System.out.println("setting context in get");
                 applicationContext = ApplicationContextProvider.getApplicationContext();

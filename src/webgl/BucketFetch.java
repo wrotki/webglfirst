@@ -29,6 +29,8 @@ import org.apache.http.impl.nio.client.DefaultHttpAsyncClient;
 import org.apache.http.nio.reactor.IOReactorException;
 import org.apache.http.params.CoreConnectionPNames;
 
+import com.otherbrane.configuration.Settings;
+
 import sun.misc.IOUtils;
 
 public class BucketFetch {
@@ -83,7 +85,8 @@ public class BucketFetch {
 	
     public void callOthers() throws Exception 
     {
-    	final HttpGet resourceGet = new HttpGet("http://s3.amazonaws.com/otherbrane/");
+    	//final HttpGet resourceGet = new HttpGet("http://s3.amazonaws.com/otherbrane/");
+    	final HttpGet resourceGet = new HttpGet(Settings.getRootUrl());
     	
 //	    for (final HttpGet request: requests) {
 	    	FutureCallback<HttpResponse> callback = new FutureCallback<HttpResponse>() {
