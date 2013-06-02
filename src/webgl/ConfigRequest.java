@@ -1,26 +1,17 @@
 package webgl;
 
-import graphs.GraphData;
-import graphs.Series;
-
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequestWrapper;
 import javax.servlet.ServletResponseWrapper;
 import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -153,8 +144,6 @@ public class ConfigRequest extends ApplicationRequest
 		this.keys = keys;
 	}
 	
-	
-	
     public void loadKeys() throws Exception 
     {
     	final HttpGet resourceGet = new HttpGet(Settings.getRootUrl());
@@ -172,7 +161,6 @@ public class ConfigRequest extends ApplicationRequest
 							for (Node child = root.getFirstChild(); child != null;
 							         child = child.getNextSibling()) 
 							{
-			                	//parent.getServlet().log("Node :" + child.toString());
 			                	String nodeName = child.getNodeName();
 			                	if( ! "Contents".equals(nodeName) )
 			                	{
@@ -181,7 +169,6 @@ public class ConfigRequest extends ApplicationRequest
 								for (Node content = child.getFirstChild(); content != null;
 								         content = content.getNextSibling()) 
 								{
-				                	//parent.getServlet().log("Contents Node :" + content.toString());
 				                	String contentsName = content.getNodeName();
 				                	if("Key".equals(contentsName))
 				                	{

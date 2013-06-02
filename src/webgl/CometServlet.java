@@ -1,36 +1,38 @@
 package webgl;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Enumeration;
+import java.lang.reflect.InvocationTargetException;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.apache.catalina.comet.CometEvent;
 import org.apache.catalina.comet.CometProcessor;
-import org.springframework.context.ApplicationContext;
-
 import workqueue.RequestProcessor;
 
 // http://www.ibm.com/developerworks/web/library/wa-cometjava/
 
 /**
- * Servlet implementation class HelloWorld
+ * Servlet implementation class CometServlet
  */
-@WebServlet("/GraphServer")
-public class GraphServer extends HttpServlet implements CometProcessor {
+public abstract class CometServlet<T extends ApplicationRequest> extends HttpServlet implements CometProcessor 
+{
 	private static final long serialVersionUID = 1L;
+	//@SuppressWarnings("rawtypes")
+	private Class<T> runtimeType;
+
+	// Forbidden
+	@SuppressWarnings("unused")
+	private CometServlet()
+	{
+	}
 	
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GraphServer() {
+    public CometServlet(Class<T> runtimeType) {
         super();
-        // TODO Auto-generated constructor stub
+    	this.runtimeType =  runtimeType;
     }
 
     private static final Integer TIMEOUT = 600 * 1000;
@@ -51,9 +53,30 @@ public class GraphServer extends HttpServlet implements CometProcessor {
 	public void event(CometEvent event) throws IOException, ServletException {
         if (event.getEventType() == CometEvent.EventType.BEGIN) {
         	HttpServletRequest request = event.getHttpServletRequest();
-
         	request.setAttribute("org.apache.tomcat.comet.timeout", TIMEOUT);
-        	RequestProcessor.send(new GraphRequest(this, event));
+        	T workitem;
+			try {
+				workitem = (T)runtimeType.getDeclaredConstructor(HttpServlet.class, CometEvent.class).newInstance(this, event);
+			} catch (InstantiationException e) {
+				log("CometServlet:", e);
+				throw new ServletException(e);
+			} catch (IllegalAccessException e) {
+				log("CometServlet:", e);
+				throw new ServletException(e);
+			} catch (IllegalArgumentException e) {
+				log("CometServlet:", e);
+				throw new ServletException(e);
+			} catch (InvocationTargetException e) {
+				log("CometServlet:", e);
+				throw new ServletException(e);
+			} catch (NoSuchMethodException e) {
+				log("CometServlet:", e);
+				throw new ServletException(e);
+			} catch (SecurityException e) {
+				log("CometServlet:", e);
+				throw new ServletException(e);
+			}
+        	RequestProcessor.send(workitem);
             //log("Begin for session: " + request.getSession(true).getId());
         } else if (event.getEventType() == CometEvent.EventType.ERROR) {
             //log("Error for session: " + request.getSession(true).getId());
@@ -64,5 +87,5 @@ public class GraphServer extends HttpServlet implements CometProcessor {
         } else if (event.getEventType() == CometEvent.EventType.READ) {
             throw new UnsupportedOperationException("This servlet does not accept data");
         }
-	}
+	}	
 }
