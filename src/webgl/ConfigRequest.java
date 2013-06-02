@@ -1,26 +1,31 @@
 package webgl;
 
+import graphs.GraphData;
+import graphs.Series;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import javax.xml.parsers.DocumentBuilder; 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequestWrapper;
+import javax.servlet.ServletResponseWrapper;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.DocumentType;
-import org.w3c.dom.Entity;
-import org.w3c.dom.NamedNodeMap;
-import org.w3c.dom.Node;
-import org.xml.sax.ErrorHandler;
-import org.xml.sax.SAXException;
-import org.xml.sax.SAXParseException;
-
-
+import org.apache.catalina.comet.CometEvent;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -28,16 +33,17 @@ import org.apache.http.concurrent.FutureCallback;
 import org.apache.http.impl.nio.client.DefaultHttpAsyncClient;
 import org.apache.http.nio.reactor.IOReactorException;
 import org.apache.http.params.CoreConnectionPNames;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
 
 import com.otherbrane.configuration.Settings;
 
-import sun.misc.IOUtils;
-
-public class BucketFetch {
+public class ConfigRequest extends ApplicationRequest 
+{
 	static DefaultHttpAsyncClient httpclient;
 	static DocumentBuilderFactory dbf;
 	static DocumentBuilder db;
-	
+
 	static{
         try {
 			httpclient = new DefaultHttpAsyncClient();
@@ -63,27 +69,93 @@ public class BucketFetch {
 		}
 	}
 	
-	ApplicationRequest parent;
 	boolean isComplete = false;
-	
-	List<String> keys;
-	
+
     final HttpGet[] requests = new HttpGet[] {
             new HttpGet("http://otherbrane.s3-website-us-east-1.amazonaws.com/world1/area1/3d/Whistler.png"),
             new HttpGet("http://otherbrane.s3-website-us-east-1.amazonaws.com/world1/area1/3d/lamps.js"),
             new HttpGet("http://otherbrane.s3-website-us-east-1.amazonaws.com/world1/area1/3d/shoe.js")
     };
+    
     final AtomicInteger pendingRequestsCount = new AtomicInteger(requests.length);
-    
-//    List<FutureCallback<HttpResponse>> futures = new ArrayList<FutureCallback<HttpResponse>>();
-    
-	public BucketFetch(ApplicationRequest parent)
+	private List<String> keys = new ArrayList<String>(50);
+
+	public ConfigRequest(HttpServlet servlet, CometEvent event) {
+		super(servlet, event);
+	}
+
+	@Override
+    public void process()
+    {
+		try {
+			loadKeys();
+		} catch (IOException e) {
+			servlet.log("IOException:", e);
+		} catch (Exception e) {
+			servlet.log("Exception:", e);
+		}
+    }
+
+	private void render()
 	{
-		this.parent = parent;
-		this.keys = new ArrayList<String>(100);
+		ServletResponseWrapper capturedResponse = new JspServletResponseWrapper(getResponse());
+        RequestDispatcher view = getRequest().getRequestDispatcher("dojoconfig.jsp");
+        
+        Set<String> buckets = new HashSet<String>(50);
+        for(String key : keys)
+        {
+        	String[] segments = key.split("/");
+        	if(segments.length >=4 && "js".equals(segments[2]))
+        	{
+        		buckets.add(segments[3]);
+        	}
+        }
+        
+        getRequest().setAttribute("keys", buckets.toArray());
+        
+        try {
+			view.forward(getRequest(), capturedResponse);
+		} catch (ServletException e) {
+			servlet.log("ServletException:", e);
+		} catch (IOException e) {
+			servlet.log("IOException:", e);
+		}
+
+	}
+
+	@Override
+    public void endProcess()
+    {
+		try {
+			render();
+			getEvent().close();
+		} catch (IOException e) {
+			servlet.log("IOException:", e);
+		}
+    }
+    
+	@Override
+    public boolean getIsComplete()
+    {
+		return isComplete;
+    }
+    
+	@Override
+    public void shutdown()
+    {
+    }
+
+	public List<String> getKeys() {
+		return keys;
+	}
+
+	public void setKeys(List<String> keys) {
+		this.keys = keys;
 	}
 	
-    public void callOthers() throws Exception 
+	
+	
+    public void loadKeys() throws Exception 
     {
     	final HttpGet resourceGet = new HttpGet(Settings.getRootUrl());
 //	    for (final HttpGet request: requests) {
@@ -113,20 +185,20 @@ public class BucketFetch {
 				                	String contentsName = content.getNodeName();
 				                	if("Key".equals(contentsName))
 				                	{
-					                	parent.getServlet().log("Key :" + content.getTextContent());
+					                	servlet.log("Key :" + content.getTextContent());
 				                		keys.add(content.getTextContent());
 				                	}
 								}
 							}
 						} catch (IllegalStateException e) {
-		                	parent.getServlet().log("IllegalStateException:" + e.toString());
+		                	servlet.log("IllegalStateException:" + e.toString());
 						} catch (IOException e) {
-		                	parent.getServlet().log("IOException:" + e.toString());
+		                	servlet.log("IOException:" + e.toString());
 						} catch (Exception nakedException){
-		                	parent.getServlet().log("Exception:" + nakedException.toString());
+		                	servlet.log("Exception:" + nakedException.toString());
 						}
 		            	finally{
-		                	parent.getServlet().log("Finally: " + resourceGet.toString());
+		                	servlet.log("Finally: " + resourceGet.toString());
 		            	}
 	            	} else {
 	            		// TODO 404 and other non-200 responses handling
@@ -156,53 +228,8 @@ public class BucketFetch {
     
     void complete()
     {
-    	((BucketRequest)parent).setKeys(keys);
-    	parent.endProcess();
-    	isComplete=true;
-    }
-    
-    public boolean getIsComplete()
-    {
-    	return isComplete;
-    }
-    
-    public void shutdown()
-    {
-
-    }
- 
-    
-    private static class MyErrorHandler implements ErrorHandler {
-        
-        private PrintWriter out;
-
-        MyErrorHandler(PrintWriter out) {
-            this.out = out;
-        }
-
-        private String getParseExceptionInfo(SAXParseException spe) {
-            String systemId = spe.getSystemId();
-            if (systemId == null) {
-                systemId = "null";
-            }
-
-            String info = "URI=" + systemId + " Line=" + spe.getLineNumber() +
-                          ": " + spe.getMessage();
-            return info;
-        }
-
-        public void warning(SAXParseException spe) throws SAXException {
-            out.println("Warning: " + getParseExceptionInfo(spe));
-        }
-            
-        public void error(SAXParseException spe) throws SAXException {
-            String message = "Error: " + getParseExceptionInfo(spe);
-            throw new SAXException(message);
-        }
-
-        public void fatalError(SAXParseException spe) throws SAXException {
-            String message = "Fatal Error: " + getParseExceptionInfo(spe);
-            throw new SAXException(message);
-        }
-    }
+    	setKeys(keys);
+    	endProcess();
+    	isComplete = true;
+    }    
 }

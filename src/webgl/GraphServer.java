@@ -24,8 +24,6 @@ import workqueue.RequestProcessor;
 @WebServlet("/GraphServer")
 public class GraphServer extends HttpServlet implements CometProcessor {
 	private static final long serialVersionUID = 1L;
-
-    ApplicationContext applicationContext = null;
 	
     /**
      * @see HttpServlet#HttpServlet()

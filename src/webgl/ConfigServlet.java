@@ -19,18 +19,16 @@ import workqueue.RequestProcessor;
 // http://www.ibm.com/developerworks/web/library/wa-cometjava/
 
 /**
- * Servlet implementation class HelloWorld
+ * Servlet implementation class ConfigServlet
  */
-@WebServlet("/BucketServer")
-public class BucketServer extends HttpServlet implements CometProcessor {
+@WebServlet("/Config")
+public class ConfigServlet extends HttpServlet implements CometProcessor {
 	private static final long serialVersionUID = 1L;
-
-    ApplicationContext applicationContext = null;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BucketServer() {
+    public ConfigServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -54,7 +52,7 @@ public class BucketServer extends HttpServlet implements CometProcessor {
         if (event.getEventType() == CometEvent.EventType.BEGIN) {
         	HttpServletRequest request = event.getHttpServletRequest();
         	request.setAttribute("org.apache.tomcat.comet.timeout", TIMEOUT);
-        	RequestProcessor.send(new BucketRequest(this, event));
+        	RequestProcessor.send(new ConfigRequest(this, event));
             //log("Begin for session: " + request.getSession(true).getId());
         } else if (event.getEventType() == CometEvent.EventType.ERROR) {
             //log("Error for session: " + request.getSession(true).getId());
