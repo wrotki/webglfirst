@@ -2,11 +2,9 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-	<bean id="applicationContextProvider" class="com.otherbrane.configuration.ApplicationContextProvider"></bean>
+	
+	<bean id="applicationContextProvider" class="com.otherbrane.configuration.Settings"></bean>
+	
     <bean id="rootUrl" class="java.lang.String"><constructor-arg type="java.lang.String" value='http://s3.amazonaws.com/otherbrane/'/></bean>
-	<!-- 
-        <constructor-arg type="java.lang.String" value='foo'/>
-               <constructor-arg type="java.lang.String" value='http://s3.amazonaws.com/otherbrane/'/>
-         -->
 </beans>
  

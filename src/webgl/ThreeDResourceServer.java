@@ -12,10 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.catalina.comet.CometEvent;
 import org.apache.catalina.comet.CometProcessor;
-import org.springframework.context.ApplicationContext;
-import org.springframework.web.context.support.WebApplicationContextUtils;
-
-import com.otherbrane.configuration.ApplicationContextProvider;
 
 import workqueue.RequestProcessor;
 
@@ -28,26 +24,7 @@ import workqueue.RequestProcessor;
 //@WebServlet("/3d") // Incorrect - intentionally
 public class ThreeDResourceServer extends HttpServlet implements CometProcessor {
 	private static final long serialVersionUID = 1L;
-	
-    ApplicationContext applicationContext = null;
-    
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    	// TODO guard against races
-        if (applicationContext == null){
-            System.out.println("setting context in get");
-            applicationContext = WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());
-        }
-        if (applicationContext != null && applicationContext.containsBean("accessKeys")){
-//            AccessBean thisAccessBean = (AccessBean) applicationContext.getBean("accessKeys");
-//            req.setAttribute("keys", thisAccessBean.toString());
-//            System.out.println("setting keys");
-        }
- 
-        // LOOK OUT!!!!!!!!!!!!!!
-//        req.getRequestDispatcher("/index2.jsp").include(req,resp);
-    }
-       
+	       
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -73,25 +50,6 @@ public class ThreeDResourceServer extends HttpServlet implements CometProcessor 
 	@Override
 	public void event(CometEvent event) throws IOException, ServletException {
         if (event.getEventType() == CometEvent.EventType.BEGIN) {
-        	// TODO: use parameters for data selection 
-        	//dumpParameters(request, response);
-
-            if (applicationContext == null){
-                System.out.println("setting context in get");
-                applicationContext = ApplicationContextProvider.getApplicationContext();
-            }
-
-        	// TODO guard against races
-//            if (applicationContext == null){
-//                System.out.println("setting context in get");
-//                applicationContext = WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());
-//            }
-            if (applicationContext != null && applicationContext.containsBean("accessKeys")){
-//                AccessBean thisAccessBean = (AccessBean) applicationContext.getBean("accessKeys");
-//                req.setAttribute("keys", thisAccessBean.toString());
-//                System.out.println("setting keys");
-            }
-
         	HttpServletRequest request = event.getHttpServletRequest();
 
         	request.setAttribute("org.apache.tomcat.comet.timeout", TIMEOUT);

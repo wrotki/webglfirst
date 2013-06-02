@@ -85,22 +85,17 @@ public class BucketFetch {
 	
     public void callOthers() throws Exception 
     {
-    	//final HttpGet resourceGet = new HttpGet("http://s3.amazonaws.com/otherbrane/");
     	final HttpGet resourceGet = new HttpGet(Settings.getRootUrl());
-    	
 //	    for (final HttpGet request: requests) {
 	    	FutureCallback<HttpResponse> callback = new FutureCallback<HttpResponse>() {
-	
+	    		@Override
 	            public void completed(final HttpResponse response) {
-
 	            	if(response.getStatusLine().getStatusCode() == 200)
 	            	{
 		            	HttpEntity entity = response.getEntity();
 		            	try {
 							InputStream stream = entity.getContent();
-							
 							Document doc = db.parse(stream);
-							
 							Node root = doc.getFirstChild();
 							for (Node child = root.getFirstChild(); child != null;
 							         child = child.getNextSibling()) 
@@ -123,7 +118,6 @@ public class BucketFetch {
 				                	}
 								}
 							}
-							
 						} catch (IllegalStateException e) {
 		                	parent.getServlet().log("IllegalStateException:" + e.toString());
 						} catch (IOException e) {
@@ -140,6 +134,7 @@ public class BucketFetch {
 	                complete();
 	            }
 	
+	    		@Override
 	            public void failed(final Exception ex) {
 	                if(pendingRequestsCount.decrementAndGet() == 0)
 	                {
@@ -147,6 +142,7 @@ public class BucketFetch {
 	                }
 	            }
 	
+	    		@Override
 	            public void cancelled() {
 	                if(pendingRequestsCount.decrementAndGet() == 0)
 	                {
