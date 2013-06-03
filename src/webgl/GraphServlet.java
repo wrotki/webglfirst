@@ -3,7 +3,7 @@ package webgl;
 import javax.servlet.annotation.WebServlet;
 
 @SuppressWarnings("serial")
-@WebServlet("/GraphServer")
+@WebServlet("/Graph")
 public class GraphServlet extends CometServlet<GraphRequest>
 {
     public GraphServlet() 

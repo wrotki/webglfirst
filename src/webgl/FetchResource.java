@@ -65,7 +65,8 @@ public class FetchResource {
 //	    for (final HttpGet request: requests) {
 	    	FutureCallback<HttpResponse> callback = new FutureCallback<HttpResponse>() {
 	
-	            public void completed(final HttpResponse response) {
+	            @Override
+				public void completed(final HttpResponse response) {
 
 	            	if(response.getStatusLine().getStatusCode() == 200)
 	            	{
@@ -92,14 +93,16 @@ public class FetchResource {
 	                complete();
 	            }
 	
-	            public void failed(final Exception ex) {
+	            @Override
+				public void failed(final Exception ex) {
 	                if(pendingRequestsCount.decrementAndGet() == 0)
 	                {
 	                	complete();
 	                }
 	            }
 	
-	            public void cancelled() {
+	            @Override
+				public void cancelled() {
 	                if(pendingRequestsCount.decrementAndGet() == 0)
 	                {
 	                	complete();
@@ -123,35 +126,5 @@ public class FetchResource {
     
     public void shutdown()
     {
-//    	if(isComplete && httpclient != null)
-//    	{
-//			try {
-//				httpclient.shutdown();
-//			} catch (InterruptedException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//			httpclient = null;
-//    	}
     }
-    
-//    ExecutorService exec = Executors.newFixedThreadPool(4);
-//
-//    private void runServer() {
-//      ServerSocket sock = new ServerSocket(portNo);
-//      while (!stopRequested) {
-//        Socket s = sock.accept();
-//        exec.execute(new ConnectionRunnable(s));
-//      }
-//    }
-//
-//    private static class ConnectionRunnable implements Runnable {
-//      private final Socket s;
-//      ConnectionRunnable(Socket s) {
-//        this.s = s;
-//      }
-//      public void run() {
-//        // handle connection
-//      }
-//    }
 }

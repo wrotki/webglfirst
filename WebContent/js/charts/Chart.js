@@ -181,7 +181,7 @@ Chart.prototype.update = function(){
         this.lastUpdated = Date.now();
         
         require(["dojo/request"], function(request){
-            request("/WebGLFirst/GraphServer").then(
+            request("/WebGLFirst/Graph").then(
                 function(text){
                     //console.log("New data at: " + Date.now());
                     thisRef.series = eval(text);

@@ -5,12 +5,12 @@ import javax.servlet.annotation.WebServlet;
 /**
  * Servlet implementation class HelloWorld
  */
-@WebServlet("/GraphListServer")
-public class GraphListServer extends CometServlet<GraphListRequest>
+@WebServlet("/GraphList")
+public class GraphListServlet extends CometServlet<GraphListRequest>
 {
 	private static final long serialVersionUID = 1L;
        
-    public GraphListServer() 
+    public GraphListServlet() 
     {
         super(GraphListRequest.class);
     }	
