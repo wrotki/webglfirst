@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.catalina.comet.CometEvent;
 import org.apache.catalina.comet.CometProcessor;
+
+import com.otherbrane.configuration.Settings;
+
 import workqueue.RequestProcessor;
 
 // http://www.ibm.com/developerworks/web/library/wa-cometjava/
@@ -57,6 +60,9 @@ public abstract class CometServlet<T extends ApplicationRequest> extends HttpSer
         if (event.getEventType() == CometEvent.EventType.BEGIN) {
         	HttpServletRequest request = event.getHttpServletRequest();
         	request.setAttribute("org.apache.tomcat.comet.timeout", TIMEOUT);
+        	
+        	logRequest();
+        	
         	T workitem;
 			try {
 				workitem = (T)runtimeType.getDeclaredConstructor(HttpServlet.class, CometEvent.class).newInstance(this, event);
@@ -92,6 +98,12 @@ public abstract class CometServlet<T extends ApplicationRequest> extends HttpSer
         }
 	}	
 	
+	private void logRequest() 
+	{
+		Request request = Settings.getRequest();
+		request.log(this);
+	}
+
 	private void dumpParameters(HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
 		//Map<String, String[]> parameters = request.getParameterMap();

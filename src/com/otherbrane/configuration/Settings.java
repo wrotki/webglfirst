@@ -4,6 +4,9 @@ import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
+import webgl.Request;
+import webgl.Session;
+
 // http://mythinkpond.wordpress.com/2010/03/22/spring-application-context/
 
 public class Settings implements ApplicationContextAware {
@@ -27,8 +30,18 @@ public class Settings implements ApplicationContextAware {
 	public static String getRootUrl() 
 	{
 		if (ctx != null && ctx.containsBean("rootUrl")){
-			return (String)ctx.getBean("rootUrl");
+			return ctx.getBean("rootUrl", String.class);
 		}
 		return "http://404.s3.amazonaws.com/otherbrane/";
 	}
+	
+	public static Request getRequest() 
+	{
+		if (ctx != null && ctx.containsBean("webglSession")){
+			Session session = ctx.getBean("webglSession", Session.class);
+			return session.getRequest();
+		}
+		return null;
+	}
+
 }
