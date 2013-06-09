@@ -15,7 +15,7 @@ SkyBox.prototype.loadTextureCube = function(callback){
 SkyBox.prototype.createMeshes = function(){
 
     var OB = window.OtherBrane;
-    var path = OB.bucketsPath;
+    var path = OB.mediaPath;
 // The model gets loaded by Actor, given the modelUrl 
     SkyBox.prototype.basePath = path;
     var urlPrefix = SkyBox.prototype.basePath + "/3d/";

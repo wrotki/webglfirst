@@ -4,7 +4,7 @@
 function Lamp(origin)
 {
     var OB = window.OtherBrane;
-	var path = OB.bucketsPath;
+	var path = OB.mediaPath;
 	Lamp.prototype.modelUrl = path + "/3d/lamp.js";
 	this.origin = origin;	
 }

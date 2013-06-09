@@ -3,7 +3,7 @@
 function Shoe(origin)
 {
     var OB = window.OtherBrane;
-    var path = OB.bucketsPath;
+    var path = OB.mediaPath;
 // The model gets loaded by Actor, given the modelUrl 
     Shoe.prototype.modelUrl = path + "/3d/shoe.js";
 	this.origin = origin;

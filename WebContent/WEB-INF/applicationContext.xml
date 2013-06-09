@@ -9,6 +9,12 @@
 	<bean id="applicationContextProvider" class="com.otherbrane.configuration.Settings"></bean>
 	
     <bean id="rootUrl" class="java.lang.String"><constructor-arg type="java.lang.String" value='http://s3.amazonaws.com/otherbrane/'/></bean>
+    
+    <bean id="mediaUrl" class="java.lang.String"><constructor-arg type="java.lang.String" value='/WebGLFirst'/></bean>
+    <!-- 
+    <bean id="mediaUrl" class="java.lang.String"><constructor-arg type="java.lang.String" value='http://otherbrane.s3-website-us-east-1.amazonaws.com/world1/area1'/></bean>
+    -->
+
 
     <bean id="webglRequest" class="webgl.Request" scope="request">
         <aop:scoped-proxy/>

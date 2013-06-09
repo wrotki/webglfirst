@@ -34,6 +34,14 @@ public class Settings implements ApplicationContextAware {
 		}
 		return "http://404.s3.amazonaws.com/otherbrane/";
 	}
+
+	public static String getMediaUrl() 
+	{
+		if (ctx != null && ctx.containsBean("mediaUrl")){
+			return ctx.getBean("mediaUrl", String.class);
+		}
+		return "/WebGLFirst";
+	}
 	
 	public static Request getRequest() 
 	{

@@ -103,6 +103,7 @@ public class ConfigRequest extends ApplicationRequest
         }
         
         getRequest().setAttribute("keys", buckets.toArray());
+        getRequest().setAttribute("mediaUrl", Settings.getMediaUrl());
         
         try {
 			view.forward(getRequest(), capturedResponse);
