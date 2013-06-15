@@ -176,7 +176,7 @@ ThreeDScene.prototype.addActor = function(actor){
 };
 
 ThreeDScene.prototype.addAnimation = function(mesh){
-    if(mesh && mesh.geometry.animation){
+    if(mesh && mesh.geometry && mesh.geometry.animation){
         THREE.AnimationHandler.add( mesh.geometry.animation );
         var animation = new THREE.Animation( mesh, "take_001" );
         this.animations.push( animation );
@@ -186,6 +186,7 @@ ThreeDScene.prototype.addAnimation = function(mesh){
 ThreeDScene.prototype.updateActors = function(){
 	for(var i in this.actors){
 		var actor = this.actors[i];
+		// TODO eliminate this, objects should self initialize (load assets and add themselves to the scene when ready), as Shoe does
 		if(actor.state == ACTOR_STATE.MODEL_LOADED){
 			if(!actor.meshesCreated && actor.createMeshes){
 				actor.createMeshes();

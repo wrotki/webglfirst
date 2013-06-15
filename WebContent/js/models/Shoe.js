@@ -29,8 +29,7 @@ Shoe.prototype.initialize = function(scene) {
             if(!prototype.modelRequested) {
                 var loader = new THREE.JSONLoader();
                 
-                // TODO - refactor using pattern similar to Dojo request() , adding objects to scene in from a callback
-                // eliminate state machine, maintaining actors state changes it is hard to comprehend
+                // TODO eliminate state machine, maintaining actors state changes it is hard to comprehend
                 loader.load(prototype.modelUrl, createGeometry);
                 prototype.modelRequested = true;
                 prototype.waiters = [];

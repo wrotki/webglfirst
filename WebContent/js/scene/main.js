@@ -1,6 +1,6 @@
-define(["dojo","dojo/_base/xhr","dijit/Dialog", "scene/ThreeDebug", 
+define(["dojo","dojo/_base/xhr","dijit/Dialog", "scene/ThreeDebug",
     "scene/FlyControls", "scene/RequestAnimationFrame","scene/Stats",
-    "scene/CameraControls","scene/ThreeDScene","scene/Constants","scene/Actor"
+    "scene/CameraControls","scene/ThreeDScene","scene/Constants","scene/Actor","scene/ColladaLoader"
     ],
 		function(){
 			return {
@@ -13,7 +13,6 @@ define(["dojo","dojo/_base/xhr","dijit/Dialog", "scene/ThreeDebug",
                                 var module = arguments[mod]; 
                                 module.initialize(this.threeDScene);
                             }
-
     						this.threeDScene.animate();
 						});
 					},
