@@ -170,26 +170,31 @@ ThreeDScene.prototype.morphAnimatedMeshes = function(){
 
 ThreeDScene.prototype.addActor = function(actor){
 	this.actors.push(actor);
-	if(actor.initialize){
+	if(!actor.initialized && actor.initialize){
 		actor.initialize(this);
 	}
+};
+
+ThreeDScene.prototype.addAnimation = function(mesh){
+    if(mesh && mesh.geometry.animation){
+        THREE.AnimationHandler.add( mesh.geometry.animation );
+        var animation = new THREE.Animation( mesh, "take_001" );
+        this.animations.push( animation );
+    }
 };
 
 ThreeDScene.prototype.updateActors = function(){
 	for(var i in this.actors){
 		var actor = this.actors[i];
 		if(actor.state == ACTOR_STATE.MODEL_LOADED){
-			if(actor.createMeshes){
+			if(!actor.meshesCreated && actor.createMeshes){
 				actor.createMeshes();
 			}
+			// TODO - move to addActor after all actor classes  refactored to self-enclosed async loading
 			for(var m in actor.meshes){
 				var mesh = actor.meshes[m];
 				this.scene.add(mesh);
-				if(mesh && mesh.geometry.animation){
-					THREE.AnimationHandler.add( mesh.geometry.animation );
-					var animation = new THREE.Animation( mesh, "take_001" );
-					this.animations.push( animation );
-				}
+				this.addAnimation(mesh);
 			}
 			actor.state = ACTOR_STATE.ACTOR_SHOWN;
 		}

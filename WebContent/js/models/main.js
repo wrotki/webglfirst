@@ -14,11 +14,18 @@ define(["scene/Actor", "models/Shoe", "models/Lamp", "models/LampCollada"],
                     // lamp = new Lamp(lampOrigin);
                     // scene.addActor(lamp);
                     
-                    asActor.call(Shoe.prototype);
+                    //asActor.call(Shoe.prototype);
                     var origin = {x: 150, y: 0, z: -120} ;
                     var shoe = new Shoe(origin);
-                    scene.addActor(shoe);
-                
+                    shoe.initialize(scene);
+                    //scene.addActor(shoe);
+
+
+                    var origin = {x: 50, y: 0, z: -70} ;
+                    var lampCollada = new LampCollada(origin);
+                    lampCollada.initialize(scene);
+
+                /*
                     origin = {x: 150, y: 0, z: -120} ;
                     shoe = new Shoe(origin);
                     scene.addActor(shoe);
@@ -54,6 +61,7 @@ define(["scene/Actor", "models/Shoe", "models/Lamp", "models/LampCollada"],
                     origin = {x: 10,y:70,z:-90} ;
                     shoe = new Shoe(origin);
                     scene.addActor(shoe);
+                    */
     		    }
     		};
 });
