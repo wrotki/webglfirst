@@ -1,4 +1,4 @@
-define(["models/Shoe", "models/Lamp"], 
+define(["models/Shoe", "models/Lamp", "models/LampCollada"], 
 		function(){
 			Array.max = function( array ){
 				return Math.max.apply( Math, array );
