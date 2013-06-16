@@ -5,7 +5,20 @@ function Shoe(origin)
     var OB = window.OtherBrane;
     var path = OB.mediaPath;
 // The model gets loaded by Actor, given the modelUrl 
+    var prototype = Object.getPrototypeOf(this);
     Shoe.prototype.modelUrl = path + "/3d/shoe.js";
+    Shoe.prototype.modelLoader = new THREE.JSONLoader();
+    Shoe.prototype.modelCallback = function( geometry, materials ){
+            prototype.model = geometry;
+            prototype.materials = materials;            
+            for(var i in prototype.waiters){
+                var actor = prototype.waiters[i];
+                actor.state = ACTOR_STATE.MODEL_LOADED;
+                actor.meshesCreated = actor.createMeshes();
+                actor.initialized = true;
+                scene.addActor(actor);
+            }
+        };
 	this.origin = origin;
 }
 
@@ -27,10 +40,8 @@ Shoe.prototype.initialize = function(scene) {
         // prototype.model is initialized by the first instance and shared by others, need to handle a potential race
         if(prototype.modelUrl){ 
             if(!prototype.modelRequested) {
-                var loader = new THREE.JSONLoader();
-                
                 // TODO eliminate state machine, maintaining actors state changes it is hard to comprehend
-                loader.load(prototype.modelUrl, createGeometry);
+                prototype.modelLoader.load(prototype.modelUrl, createGeometry);
                 prototype.modelRequested = true;
                 prototype.waiters = [];
             }

@@ -22,6 +22,7 @@ define(["scene/Actor", "models/Shoe", "models/Lamp", "models/LampCollada"],
 
 
                     var origin = {x: 50, y: 0, z: -70} ;
+                    asActor.call(LampCollada.prototype);
                     var lampCollada = new LampCollada(origin);
                     lampCollada.initialize(scene);
 
