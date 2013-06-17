@@ -19,15 +19,5 @@
   <listener>
     <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
   </listener>
-  <!--
-  <servlet> 
-    <servlet-name>testcomet</servlet-name> 
-    <servlet-class>Hello.HelloWorld</servlet-class> 
-  </servlet> 
-  
-  <servlet-mapping> 
-    <servlet-name>testcomet</servlet-name> 
-    <url-pattern>/comet</url-pattern> 
-  </servlet-mapping> 
-  -->
+ 
 </web-app>

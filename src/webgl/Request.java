@@ -2,7 +2,6 @@ package webgl;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.eclipse.jdt.core.compiler.InvalidInputException;
 import org.springframework.beans.factory.annotation.Autowired;
 
 // TODO - how does this relate to:
