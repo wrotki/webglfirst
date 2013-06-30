@@ -9,10 +9,10 @@ define(["scene/Actor", "models/Shoe", "models/Lamp", "models/LampCollada"],
     		return {
     		    initialize : function(scene){
     		            		        
-                    // asActor.call(Lamp.prototype);
-                    // var lampOrigin = {x: 150, y: 0, z: -150};
-                    // lamp = new Lamp(lampOrigin);
-                    // scene.addActor(lamp);
+                    asActor.call(Lamp.prototype);
+                    var lampOrigin = {x: 150, y: 0, z: -150};
+                    lamp = new Lamp(lampOrigin);
+                    lamp.initialize(scene);
                     
                     //asActor.call(Shoe.prototype);
                     var origin = {x: 150, y: 0, z: -120} ;

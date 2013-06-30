@@ -5,13 +5,25 @@ function Lamp(origin)
 {
     var OB = window.OtherBrane;
 	var path = OB.mediaPath;
-	Lamp.prototype.modelUrl = path + "/3d/lamp.js";
+    var prototype = Lamp.prototype;
+	prototype.modelUrl = path + "/3d/lamp.js";
+	prototype.modelLoader = new THREE.JSONLoader();
+
+	var thisActor = this;
+    Lamp.prototype.modelCallback =  function ( model ) {
+            prototype.model = model;        
+            prototype.addWaiters(thisActor.scene);
+     };
 	this.origin = origin;	
 }
 
 Lamp.prototype.createMeshes = function(){
     var zmesh = new THREE.SkinnedMesh(Lamp.prototype.model, new THREE.MeshLambertMaterial( { color: 0x606060, morphTargets: true } )
     /*new THREE.MeshFaceMaterial(), false */);
+    
+    // Dirty hack to workaround missing property crashing Three.js
+    zmesh.boneTexture = new Object();
+    // End hack
     zmesh.position.set( this.origin.x, this.origin.y, this.origin.z );
     zmesh.scale.set( 1, 1, 1 );
     zmesh.overdraw = true;

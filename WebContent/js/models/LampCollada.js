@@ -1,6 +1,11 @@
 // http://bkcore.com/blog/3d/webgl-three-js-workflow-tips.html
 // http://www.96methods.com/2012/02/three-js-importing-a-model/
 // THREE.AnimationHandler.add( geometry.animation );
+//http://devmatrix.wordpress.com/2013/02/27/creating-skeletal-animation-in-blender-and-exporting-it-to-three-js/
+//http://stackoverflow.com/questions/15095068/three-js-how-to-move-the-bones-of-a-skinnedmesh
+// http://stemkoski.github.io/Three.js/
+//http://stemkoski.github.io/Three.js/Model-Animation-Control.html
+
 function LampCollada(origin)
 {
     var OB = window.OtherBrane;
