@@ -1,4 +1,4 @@
-define(["scene/Actor", "models/Shoe", "models/Lamp", "models/LampCollada"], 
+define(["scene/Actor", "models/Shoe", "models/AnimateLampComponent", "models/Lamp", "models/LampCollada"], 
 		function(){
 			Array.max = function( array ){
 				return Math.max.apply( Math, array );
@@ -9,19 +9,19 @@ define(["scene/Actor", "models/Shoe", "models/Lamp", "models/LampCollada"],
     		return {
     		    initialize : function(scene){
     		            		        
-                    // asActor.call(Lamp.prototype);
-                    // var lampOrigin = {x: 150, y: 0, z: -150};
-                    // lamp = new Lamp(lampOrigin);
-                    // scene.addActor(lamp);
+                    asActor.call(Lamp.prototype);
+                    var lampOrigin = {x: 500, y: 0, z: -500};
+                    lamp = new Lamp(lampOrigin);
+                    lamp.initialize(scene);
                     
                     //asActor.call(Shoe.prototype);
-                    var origin = {x: 150, y: 0, z: -120} ;
+                    var origin = {x: 500, y: 0, z: 0} ;
                     var shoe = new Shoe(origin);
                     shoe.initialize(scene);
                     //scene.addActor(shoe);
 
 
-                    var origin = {x: 50, y: 0, z: -70} ;
+                    var origin = {x: -500, y: 0, z: -500} ;
                     asActor.call(LampCollada.prototype);
                     var lampCollada = new LampCollada(origin);
                     lampCollada.initialize(scene);

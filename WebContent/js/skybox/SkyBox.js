@@ -13,7 +13,6 @@ SkyBox.prototype.loadTextureCube = function(callback){
 };
 
 SkyBox.prototype.createMeshes = function(){
-
     var OB = window.OtherBrane;
     var path = OB.mediaPath;
 // The model gets loaded by Actor, given the modelUrl 
@@ -22,7 +21,6 @@ SkyBox.prototype.createMeshes = function(){
     var urls = [ urlPrefix + "posx.jpg", urlPrefix + "negx.jpg",
         urlPrefix + "posy.jpg", urlPrefix + "negy.jpg",
         urlPrefix + "posz.jpg", urlPrefix + "negz.jpg" ];
-
     var materialArray = [];
     materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( SkyBox.prototype.basePath + "/3d/" + "posx.jpg" ) }));
     materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( SkyBox.prototype.basePath + "/3d/" + "posy.jpg" ) }));
@@ -30,14 +28,12 @@ SkyBox.prototype.createMeshes = function(){
     materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( SkyBox.prototype.basePath + "/3d/" + "negx.jpg" ) }));
     materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( SkyBox.prototype.basePath + "/3d/" + "negy.jpg" ) }));
     materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( SkyBox.prototype.basePath + "/3d/" + "negz.jpg" ) }));
-    for (var i = 0; i < 6; i++)
+    for (var i = 0; i < 6; i++){
        materialArray[i].side = THREE.DoubleSide; //THREE.BackSide;
-    var skyboxMaterial = new THREE.MeshFaceMaterial( materialArray );
-    
-    var skyboxGeom = new THREE.CubeGeometry( 100000, 100000, 100000, 1, 1, 1 );
-    
-    var skybox = new THREE.Mesh( skyboxGeom, skyboxMaterial );
-    
+    }
+    var skyboxMaterial = new THREE.MeshFaceMaterial( materialArray );    
+    var skyboxGeom = new THREE.CubeGeometry( 100000, 100000, 100000, 1, 1, 1 );    
+    var skybox = new THREE.Mesh( skyboxGeom, skyboxMaterial );    
     var zmesh = skybox;
     zmesh.position.x = this.origin.x;
     zmesh.position.y = this.origin.y;

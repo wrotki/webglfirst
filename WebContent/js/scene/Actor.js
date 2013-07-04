@@ -2,10 +2,12 @@
  * @author mariusz
  */
 var asActor = function() {
+  var prototype = Object.getPrototypeOf(this);
   this.initialize = function(scene) {
         this.scene = scene; 
         this.meshes = [];
-        var prototype = Object.getPrototypeOf(this);
+        prototype.components = []; // Here be dragons - i.e. AI, physics, and every other aspect of an Actor. Let's assume for the moment 
+        // that the component's are not different between instances of a class 
         // prototype.model is initialized by the first instance and shared by others, need to handle a potential race
         if(prototype.modelUrl){ 
             if(!prototype.modelRequested) {
@@ -29,4 +31,9 @@ var asActor = function() {
             scene.addActor(actor);
       }
   };
+  prototype.update = function(){
+      for i=0;i<this.components.length;i++){
+          this.components[i].update();
+      }       
+  }
 };    
