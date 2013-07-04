@@ -1,6 +1,4 @@
 // http://www.aerotwist.com/tutorials/an-introduction-to-shaders-part-1/
-
-
 function Chart(chartOrigin, label, blockColor, series)
 {
 	this.series = series;
@@ -10,10 +8,7 @@ function Chart(chartOrigin, label, blockColor, series)
 
 Chart.VerticalSize = 800;
 Chart.HorizontalSize = 1200;
-
-
-Chart.prototype.prepareMeshes = function(){
-    
+Chart.prototype.prepareMeshes = function(){    
     var attributes = this.attributes = {
       displacement: {
         type: 'f', // a float
@@ -90,9 +85,8 @@ Chart.prototype.createMeshes = function(){
     	// this.geometry = this.chartBlocks[0].geometry;
         // for(var i=1;i<this.chartBlocks.length;i++){
     		// THREE.GeometryUtils.merge(this.geometry, this.chartBlocks[i].geometry);
-    	// }
-    
-    	this.mergedGeo.computeFaceNormals();
+    	// }
+        this.mergedGeo.computeFaceNormals();
     	var group = new THREE.Mesh( this.mergedGeo, this.material );
     	group.matrixAutoUpdate = false;
     	group.updateMatrix(); 

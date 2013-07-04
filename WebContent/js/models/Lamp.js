@@ -1,6 +1,7 @@
 // http://bkcore.com/blog/3d/webgl-three-js-workflow-tips.html
 // http://www.96methods.com/2012/02/three-js-importing-a-model/
 //		THREE.AnimationHandler.add( geometry.animation );
+// http://blog.tojicode.com/2011/10/building-game-part-3-skinning-animation.html
 function Lamp(origin)
 {
     var OB = window.OtherBrane;
@@ -8,7 +9,6 @@ function Lamp(origin)
     var prototype = Lamp.prototype;
 	prototype.modelUrl = path + "/3d/lamp.js";
 	prototype.modelLoader = new THREE.JSONLoader();
-
 	var thisActor = this;
     Lamp.prototype.modelCallback =  function ( model ) {
             prototype.model = model;        
