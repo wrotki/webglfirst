@@ -27,12 +27,15 @@ var asActor = function() {
             var actor = this.waiters[i];
             actor.state = ACTOR_STATE.MODEL_LOADED;
             actor.meshesCreated = actor.createMeshes();
+            for(var m=0;m<actor.meshes.length;m++){
+            	actor.meshes[m].parentActor = actor;// For debugging
+            }
             actor.initialized = true;
             scene.addActor(actor);
       }
   };
   prototype.update = function(){
-      for i=0;i<this.components.length;i++){
+      for(i=0;i<this.components.length;i++){
           this.components[i].update();
       }       
   }

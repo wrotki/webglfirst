@@ -37,7 +37,7 @@ var duration = 5000;
 var keyframes = 30, interpolation = duration / keyframes;
 var lastKeyframe = 0, currentKeyframe = 0;
 
-Lamp.prototype.update = function(){
+Lamp.prototype.update_old = function(){
 	if(this.state != ACTOR_STATE.ACTOR_SHOWN || !this.meshes || ! this.meshes[0]){
 		return;
 	}

@@ -15,9 +15,9 @@ define(["scene/Actor", "models/Shoe", "models/AnimateLampComponent", "models/Lam
                     lamp.initialize(scene);
                     
                     //asActor.call(Shoe.prototype);
-                    var origin = {x: 500, y: 0, z: 0} ;
-                    var shoe = new Shoe(origin);
-                    shoe.initialize(scene);
+                    //var origin = {x: 500, y: 0, z: 0} ;
+                    //var shoe = new Shoe(origin);
+                    //shoe.initialize(scene);
                     //scene.addActor(shoe);
 
 
