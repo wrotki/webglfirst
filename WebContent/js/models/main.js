@@ -9,10 +9,10 @@ define(["scene/Actor", "models/Shoe", "models/AnimateLampComponent", "models/Lam
     		return {
     		    initialize : function(scene){
     		            		        
-                    asActor.call(Lamp.prototype);
-                    var lampOrigin = {x: 500, y: 0, z: -500};
-                    lamp = new Lamp(lampOrigin);
-                    lamp.initialize(scene);
+                    //asActor.call(Lamp.prototype);
+                    // var lampOrigin = {x: 500, y: 0, z: -500};
+                    // lamp = new Lamp(lampOrigin);
+                    // lamp.initialize(scene);
                     
                     //asActor.call(Shoe.prototype);
                     //var origin = {x: 500, y: 0, z: 0} ;
@@ -20,11 +20,9 @@ define(["scene/Actor", "models/Shoe", "models/AnimateLampComponent", "models/Lam
                     //shoe.initialize(scene);
                     //scene.addActor(shoe);
 
-
-                    var origin = {x: -500, y: 0, z: -500} ;
-                    asActor.call(LampCollada.prototype);
-                    var lampCollada = new LampCollada(origin);
-                    lampCollada.initialize(scene);
+                    // var origin = {x: -500, y: 0, z: -500} ;
+                    // var lampCollada = new LampCollada(origin);
+                    // lampCollada.initialize(scene);
 
                 /*
                     origin = {x: 150, y: 0, z: -120} ;

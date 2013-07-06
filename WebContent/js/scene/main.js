@@ -6,9 +6,9 @@ define(["dojo","dojo/_base/xhr","dijit/Dialog", "scene/ThreeDebug",
 			return {
 					animate: function(){
 					    require(window.OtherBrane.moduleList, function(){ // The module list come from a list of S3 directories - obtained from /WebGLFirst/Config (dojoconfig.jsp)
-    						window.threeDScene = this.threeDScene = new ThreeDScene();
-
-                            for(var mod in arguments)
+					        // TODO consider removing the threeDScene global to enable multiple scenes and renderers on the page
+    						window.OtherBrane.threeDScene = this.threeDScene = new ThreeDScene();
+                            for(var mod=0;mod<arguments.length;mod++)
                             {
                                 var module = arguments[mod]; 
                                 module.initialize(this.threeDScene);

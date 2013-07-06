@@ -2,14 +2,19 @@
 // http://stemkoski.github.io/Three.js/
 
 function SkyBox(origin){
+    Actor.call(this);
 	this.origin = origin;
 }
-
-
+SkyBox.prototype = Object.create(Actor.prototype);
+SkyBox.prototype.constructor = SkyBox;
 // TODO: remove, turns out unnecessary for skybox texture loading
 SkyBox.prototype.loadTextureCube = function(callback){
-        
     callback();
+};
+
+SkyBox.prototype.initialize = function(scene){
+    Actor.prototype.initialize.call(this,scene);
+    this.scene.addActor(this);
 };
 
 SkyBox.prototype.createMeshes = function(){

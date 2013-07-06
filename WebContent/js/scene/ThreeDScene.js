@@ -82,7 +82,7 @@ ThreeDScene.prototype.animate = function(){
 
 ThreeDScene.prototype.update = function() {
 	this.updateActors();
-	for(var i in this.actors){
+	for(var i=0;i<this.actors.length;i++){
 		if (this.actors[i].update) {
 			this.actors[i].update();
 		}
@@ -101,7 +101,7 @@ ThreeDScene.prototype.render = function() {
 
 var dstep = -10;
 ThreeDScene.prototype.startAnimation = function () {
-	for( var i = 0; i < this.animations.length; i ++ ) {
+	for(var i = 0; i < this.animations.length; i++) {
 		this.animations[ i ].offset = 0.05 * Math.random();
 		this.animations[ i ].play();
 	}
@@ -125,7 +125,7 @@ ThreeDScene.prototype.addAnimation = function(mesh){
 };
 
 ThreeDScene.prototype.updateActors = function(){
-	for(var i in this.actors){
+	for(var i=0; i<this.actors.length;i++){
 		var actor = this.actors[i];
 		// TODO eliminate this, objects should self initialize (load assets and add themselves to the scene when ready), as Shoe does
 		if(actor.state == ACTOR_STATE.MODEL_LOADED){
@@ -133,7 +133,7 @@ ThreeDScene.prototype.updateActors = function(){
 				actor.createMeshes();
 			}
 			// TODO - move to addActor after all actor classes  refactored to self-enclosed async loading
-			for(var m in actor.meshes){
+			for(var m=0;m<actor.meshes.length;m++){
 				var mesh = actor.meshes[m];
 				this.scene.add(mesh);
 				this.addAnimation(mesh);
