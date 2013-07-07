@@ -1,12 +1,12 @@
 // https://github.com/mrdoob/three.js/wiki
 // http://stemkoski.github.io/Three.js/
-
 function Floor(origin){
+    Actor.call(this,origin);
 	this.origin = origin;
 }
-
+Floor.prototype = Object.create(Actor.prototype);
+Floor.prototype.constructor = SkyBox;
 Floor.prototype.createMeshes = function(){
-
     var OB = window.OtherBrane;
     var path = OB.mediaPath;
 // The model gets loaded by Actor, given the modelUrl 

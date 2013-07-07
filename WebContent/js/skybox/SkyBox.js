@@ -1,7 +1,7 @@
 // https://github.com/mrdoob/three.js/wiki
 // http://stemkoski.github.io/Three.js/
-function SkyBox(origin, scene){
-    Actor.call(this,origin,scene);
+function SkyBox(origin){
+    Actor.call(this,origin);
 }
 SkyBox.prototype = Object.create(Actor.prototype);
 SkyBox.prototype.constructor = SkyBox;
