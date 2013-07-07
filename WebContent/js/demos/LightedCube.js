@@ -1,14 +1,9 @@
-function LightedCube(origin)
+function LightedCube(origin,scene)
 {
-    Actor.call(this);
-	this.origin = origin;
+    Actor.call(this,origin,scene);
 }
 LightedCube.prototype = Object.create(Actor.prototype);
 LightedCube.prototype.constructor = LightedCube;
-LightedCube.prototype.initialize = function(scene){
-    Actor.prototype.initialize.call(this,scene);
-    this.scene.addActor(this);
-};
 LightedCube.prototype.createMeshes = function(){
     var zmesh =  new THREE.Mesh(
             new THREE.CubeGeometry(50, 50, 50),

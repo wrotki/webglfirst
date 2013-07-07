@@ -1,10 +1,16 @@
 /**
  * @author mariusz
  */
-function Actor() {
+function Actor(origin,scene) {
     var prototype = Object.getPrototypeOf(this);
         this.meshes = [];
-        this.components = []; // Here be dragons - i.e. AI, physics, and every other aspect of an Actor. 
+        this.components = []; // Here be dragons - i.e. AI, physics, and every other aspect of an Actor.
+        if(origin){
+            this.origin = origin;
+        } 
+        if(scene){
+            this.initialize(scene);
+        }
 }
 Actor.prototype.initialize = function(scene) {
         this.scene = scene; 
@@ -18,10 +24,12 @@ Actor.prototype.initialize = function(scene) {
             }
             this.state = ACTOR_STATE.MODEL_REQUESTED;
             this.waiters.push(this);
+            return this;
         } else {
             this.state = ACTOR_STATE.MODEL_LOADED;
         }
         this.initialized = true;
+        this.scene.addActor(this);
         return this;
 };
 Actor.prototype.addWaiters = function(){
