@@ -5,7 +5,7 @@ function Floor(origin){
 	this.origin = origin;
 }
 Floor.prototype = Object.create(Actor.prototype);
-Floor.prototype.constructor = SkyBox;
+Floor.prototype.constructor = Floor;
 Floor.prototype.createMeshes = function(){
     var OB = window.OtherBrane;
     var path = OB.mediaPath;

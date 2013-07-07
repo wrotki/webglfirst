@@ -9,6 +9,7 @@ define(["scene/Actor", "models/Shoe", "models/AnimateLampComponent", "models/Lam
     		return {
     		    initialize : function(scene){
                     scene.addActor(new LampCollada({x: -500, y: 0, z: -500}));
+                    scene.addActor(new Lamp({x: -500, y: 0, z: 500}));
     		            		        
                     //asActor.call(Lamp.prototype);
                     // var lampOrigin = {x: 500, y: 0, z: -500};

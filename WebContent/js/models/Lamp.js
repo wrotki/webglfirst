@@ -5,7 +5,6 @@
 // These need to be defined prior to asActor call on the type
 var OB = window.OtherBrane;
 var path = OB.mediaPath;
-
 function Lamp(origin)
 {
     Actor.call(this);
@@ -21,10 +20,8 @@ Lamp.prototype.modelCallback =  function ( model ) {
 };
 Lamp.prototype.createMeshes = function(){
     var zmesh = new THREE.SkinnedMesh(Lamp.prototype.model, new THREE.MeshLambertMaterial( { color: 0x606060, morphTargets: true } )
-    /*new THREE.MeshFaceMaterial(), false */);    
     // Dirty hack to workaround missing property crashing Three.js
     zmesh.boneTexture = new Object();
-    zmesh.material = new THREE.Material();
     // End hack
     zmesh.position.set( this.origin.x, this.origin.y, this.origin.z );
     zmesh.scale.set( 1, 1, 1 );
