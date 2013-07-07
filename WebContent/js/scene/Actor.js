@@ -2,7 +2,6 @@
  * @author mariusz
  */
 function Actor(origin) {
-    var prototype = Object.getPrototypeOf(this);
     this.meshes = [];
     this.components = []; // Here be dragons - i.e. AI, physics, and every other aspect of an Actor.
     this.origin = origin;

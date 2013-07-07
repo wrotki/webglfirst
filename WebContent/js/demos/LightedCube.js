@@ -1,6 +1,6 @@
-function LightedCube(origin,scene)
+function LightedCube(origin)
 {
-    Actor.call(this,origin,scene);
+    Actor.call(this,origin);
 }
 LightedCube.prototype = Object.create(Actor.prototype);
 LightedCube.prototype.constructor = LightedCube;

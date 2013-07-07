@@ -7,8 +7,8 @@ var OB = window.OtherBrane;
 var path = OB.mediaPath;
 function Lamp(origin)
 {
-    Actor.call(this);
-	this.origin = origin;	
+    Actor.call(this,origin);
+    this.components.push(new AnimateLampComponent(this));
 }
 Lamp.prototype = Object.create(Actor.prototype);
 Lamp.prototype.constructor = Lamp;
@@ -19,7 +19,7 @@ Lamp.prototype.modelCallback =  function ( model ) {
         Lamp.prototype.addWaiters(); // Depends on the global window.OtherBrane.threeDScene
 };
 Lamp.prototype.createMeshes = function(){
-    var zmesh = new THREE.SkinnedMesh(Lamp.prototype.model, new THREE.MeshLambertMaterial( { color: 0x606060, morphTargets: true } )
+    var zmesh = new THREE.SkinnedMesh(Lamp.prototype.model, new THREE.MeshLambertMaterial( { color: 0x606060, morphTargets: true } ));
     // Dirty hack to workaround missing property crashing Three.js
     zmesh.boneTexture = new Object();
     // End hack
@@ -28,35 +28,4 @@ Lamp.prototype.createMeshes = function(){
     zmesh.overdraw = true;
     this.meshes.push(zmesh);
 	return true;
-};
-
-//TODO this is very temporary, make it per-object later
-
-var duration = 5000;
-var keyframes = 30, interpolation = duration / keyframes;
-var lastKeyframe = 0, currentKeyframe = 0;
-
-Lamp.prototype.update_old = function(){
-	if(this.state != ACTOR_STATE.ACTOR_SHOWN || !this.meshes || ! this.meshes[0]){
-		return;
-	}
-	var mesh = this.meshes[0];
-	// Alternate morph targets
-
-	var time = Date.now() % duration;
-
-	var keyframe = Math.floor( time / interpolation );
-    
-	if(mesh && mesh.morphTargetInfluences){
-		if ( keyframe != currentKeyframe ) {
-			mesh.morphTargetInfluences[ lastKeyframe ] = 0;
-			mesh.morphTargetInfluences[ currentKeyframe ] = 1;
-			mesh.morphTargetInfluences[ keyframe ] = 0;
-
-			lastKeyframe = currentKeyframe;
-			currentKeyframe = keyframe;
-		}
-		mesh.morphTargetInfluences[ keyframe ] = ( time % interpolation ) / interpolation;
-		mesh.morphTargetInfluences[ lastKeyframe ] = 1 - mesh.morphTargetInfluences[ keyframe ];
-	}
 };

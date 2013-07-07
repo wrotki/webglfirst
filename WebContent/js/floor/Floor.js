@@ -2,7 +2,6 @@
 // http://stemkoski.github.io/Three.js/
 function Floor(origin){
     Actor.call(this,origin);
-	this.origin = origin;
 }
 Floor.prototype = Object.create(Actor.prototype);
 Floor.prototype.constructor = Floor;
