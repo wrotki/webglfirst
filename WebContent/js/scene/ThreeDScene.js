@@ -71,7 +71,28 @@ function ThreeDScene(){
 	}
 	this.actors = [];
 	this.animations = [];	
+	
+    var SCALE = 0.7;
+    var MARGIN = 0;
+    
+    var WIDTH = window.innerWidth;
+    var HEIGHT = window.innerHeight - 2 * MARGIN;
+    function onWindowResize( event ) {
+        windowHalfX = window.innerWidth / 2;
+        windowHalfY = window.innerHeight / 2;
+    
+        WIDTH = window.innerWidth;
+        HEIGHT = window.innerHeight - 2 * MARGIN;
+    
+        //effectSSAO.uniforms[ 'size' ].value.set( Math.floor( SCALE * WIDTH ), Math.floor( SCALE * HEIGHT ) );
+    
+        renderer.setSize( WIDTH, HEIGHT );
+        camera.aspect = WIDTH / HEIGHT;
+        camera.updateProjectionMatrix();
+    }
+	window.addEventListener( 'resize', onWindowResize, false );
 }
+
 
 // Main animation loop
 ThreeDScene.prototype.animate = function(){
