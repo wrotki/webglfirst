@@ -45,7 +45,6 @@ function ThreeDScene(){
     light.position.set( 170, 330, 160 );
     scene.add(light);
     light = new THREE.DirectionalLight();
-    //light.color = 0xFF00FF;
     light.position.set( -50, 50, 50 );
     light.target.position.set(0,0,0);
     scene.add(light);
