@@ -1,10 +1,14 @@
 // http://www.aerotwist.com/tutorials/an-introduction-to-shaders-part-1/
 function Chart(chartOrigin, label, blockColor, series)
 {
+    Actor.call(this, chartOrigin);
 	this.series = series;
 	this.chartOrigin = chartOrigin;
 	this.labelText = label;
 };
+Chart.prototype = Object.create(Actor.prototype);
+Chart.prototype.constructor = Chart;
+
 
 Chart.VerticalSize = 800;
 Chart.HorizontalSize = 1200;
@@ -76,9 +80,7 @@ Chart.prototype.prepareMeshes = function(){
 	
 };
 
-
 Chart.prototype.createMeshes = function(){
-	
 	if(this.mergedGeo == null){
     	this.prepareMeshes();
     	// http://learningthreejs.com/data/performance-merging-geometry/#%7B%22nCubes%22%3A50000%2C%22doMerge%22%3Atrue%7D
@@ -93,17 +95,14 @@ Chart.prototype.createMeshes = function(){
     	this.meshes.push(group);
         this.lastUpdated = Date.now();
     } 
-
-    this.setValues();
-	
+    this.setValues();	
 //	TODO: uncomment
 //	this.meshes.push(this.label);
 //	
 //	// TODO: rework this to be a proper composite
 //	for(var i in this.ruler.rulerLines){
 //	    this.meshes.push(this.ruler.rulerLines[i]); // Includes label
-//	}
-    
+//	} 
 	return true;
 };
 
@@ -115,7 +114,6 @@ Chart.prototype.removeMeshes = function(){
     this.meshes = [];
     this.mergedGeo = null;
 };
-
 
 Chart.prototype.setValues = function(){
     // now populate the array of attributes
@@ -155,10 +153,6 @@ Chart.prototype.getOrigin = function(){
 
 Chart.prototype.getSeries = function(){
 	return this.series;
-};
-
-Chart.prototype.initialize = function(scene){
-	this.scene = scene;	
 };
 
 Chart.prototype.createMesh = function(){
