@@ -31,8 +31,15 @@ http://dojotoolkit.org/documentation/tutorials/1.9/themes_buttons_textboxes/
                 </div>
             </div>
             <div class="edgePanel" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region: 'top'">
-                Header content (top)
+            <div class="searchInputColumn">
+                <div class="searchInputColumnInner">
+                    <input id="searchTerms" placeholder="search terms">
+                </div>
             </div>
+            <div class="searchButtonColumn">
+                <button id="searchBtn">Search</button>
+            </div>
+        </div>
             <div class="edgePanel" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region: 'bottom'">
                 <div data-dojo-type="dijit/layout/StackController" data-dojo-props="containerId:'contentStack'"></div>
             </div>
@@ -41,9 +48,16 @@ http://dojotoolkit.org/documentation/tutorials/1.9/themes_buttons_textboxes/
             </div>
         </div>
         <!-- load dojo -->
+        <script src="/WebGLFirst/Config"></script><!-- gets a dojo config rendered via <script src="dojoconfig.jsp"></script>     -->
         <script src="//ajax.googleapis.com/ajax/libs/dojo/1.9.1/dojo/dojo.js"></script>
         <script>
-            require(["dojo/parser", "dijit/layout/BorderContainer", "dijit/layout/ContentPane", "dijit/layout/StackContainer", "dijit/layout/StackController", "dojo/domReady!"], function(parser) {
+            require(["dojo/parser", 
+                            "dijit/layout/BorderContainer", 
+                            "dijit/layout/ContentPane", 
+                            "dijit/layout/StackContainer",
+                            "dijit/layout/StackController",
+                            "app/controller",
+                            "dojo/domReady!"], function(parser) {
                 parser.parse();
             });
         </script>

@@ -20,7 +20,8 @@ OB.moduleList = [];
         dojoBlankHtmlUrl:'/blank.html',
         tlmSiblingOfDojo: false,
         packages: [
-            { name: "scene", location: OB.mediaPath + "/js/scene" }  
+            { name: "scene", location: OB.mediaPath + "/js/scene" }  ,
+            { name: "app", location: OB.mediaPath + "/js/app" } 
         <c:forEach var="current" items="${keys}" >
            ,{ name: "${current}", location: OB.mediaPath + "/js/" + "${current}"} 
         </c:forEach>
