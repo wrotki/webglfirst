@@ -19,14 +19,18 @@ http://dojotoolkit.org/documentation/tutorials/1.9/themes_buttons_textboxes/
 		<div class="centerPanel" data-dojo-type="dijit/layout/StackContainer"
 			data-dojo-props="region: 'center',id: 'contentStack'">
 			<div data-dojo-type="dijit/layout/ContentPane" title="Group 1">
-				<h4>Group 1 Content</h4>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-					do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-					enim ad minim veniam, quis nostrud exercitation ullamco laboris
-					nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-					reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-					pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-					culpa qui officia deserunt mollit anim id est laborum.</p>
+				<form method="post" action="/tests/UploadFile.php" id="myForm"
+					enctype="multipart/form-data">
+					<fieldset>
+						<legend>Form Post Test</legend>
+						<input class="browseButton" name="uploadedfile" multiple="true"
+							type="file" dojoType="dojox.form.Uploader"
+							label="Select Some Files" id="uploader" /> <input type="text"
+							name="album" value="Summer Vacation" /> <input type="text"
+							name="year" value="2011" /> <input type="submit" label="Submit"
+							dojoType="dijit.form.Button" />
+					</fieldset>
+				</form>
 			</div>
 			<div data-dojo-type="dijit/layout/ContentPane" title="Group Two">
 				<h4>Group 2 Content</h4>
@@ -62,13 +66,14 @@ http://dojotoolkit.org/documentation/tutorials/1.9/themes_buttons_textboxes/
 	<!-- gets a dojo config rendered via <script src="dojoconfig.jsp"></script>     -->
 	<script src="//ajax.googleapis.com/ajax/libs/dojo/1.9.1/dojo/dojo.js"></script>
 	<script>
-		require(["app/controller", "dojo/parser", "dijit/layout/BorderContainer",
-				"dijit/layout/ContentPane", "dijit/layout/StackContainer",
-				"dijit/layout/StackController", "app/controller",
-				"dojo/domReady!" ], function(demoApp,parser) {
-			parser.parse();
-			demoApp.init();
-		});
+		require([ "app/controller", "dojo/parser",
+				"dijit/layout/BorderContainer", "dijit/layout/ContentPane",
+				"dijit/layout/StackContainer", "dijit/layout/StackController",
+				"app/controller", "dojo/domReady!" ],
+				function(demoApp, parser) {
+					parser.parse();
+					demoApp.init();
+				});
 	</script>
 </body>
 </html>
