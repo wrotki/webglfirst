@@ -1,4 +1,6 @@
-define(["dojo/_base/config", "dojox/image/LightboxNano", "dojo/dom", "dojo/on", "dijit/registry", "dojo/dom-construct", "dojo/keys", "dijit/layout/ContentPane", "dojox/image/LightboxNano"], function(config, LightboxNano, dom, on, registry, domConstruct, keys, ContentPane, LightboxNano) {
+define(["dojo/_base/config", "dojox/image/LightboxNano", "dojo/dom", "dojo/on", "dijit/registry", "dojo/dom-construct", "dojo/keys", 
+             "dijit/layout/ContentPane", "dojox/image/LightboxNano","app/S3Upload"], 
+             function(config, LightboxNano, dom, on, registry, domConstruct, keys, ContentPane, LightboxNano, S3Upload) {
     var store = null, flickrQuery = config.flickrRequest || {}, startup = function() {
         // create the data store
         //store = new FlickrRestStore();
