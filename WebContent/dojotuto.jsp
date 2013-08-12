@@ -35,21 +35,21 @@ http://dojotoolkit.org/documentation/tutorials/1.9/themes_buttons_textboxes/
 			 -->
 				<%
                  String policy_document =
-"{\"expiration\": \"2009-01-01T00:00:00Z\"," +
+"{\"expiration\": \"2013-08-13T00:00:00Z\"," +
  "\"conditions\": [ " +
-   " {\"bucket\": \"s3-bucket\"}, " +
-   " [\"starts-with\", \"$key\", \"uploads/\"]," +
-    "{\"acl\": \"private\"}, " +
+   " {\"bucket\": \"otherbrane\"}, " +
+   " [\"starts-with\", \"$key\", \"world1/\"]," +
+    "{\"acl\": \"public-read\"}, " +
    " {\"success_action_redirect\": \"http://localhost/\"}, " +
    " [\"starts-with\", \"$Content-Type\",\"\"], " +
-   " [\"content-length-range\", 0, 1048576] " +
+   " [\"content-length-range\", 0, 10485760] " +
  " ] " +
 "}" ;
 
                  String policy = (new sun.misc.BASE64Encoder()).encode(
                  policy_document.getBytes("UTF-8")).replaceAll("\n","").replaceAll("\r","");
 
-                 String aws_secret_key = "dupa kwas";
+                 String aws_secret_key = "";
 
                  javax.crypto.Mac hmac = javax.crypto.Mac.getInstance("HmacSHA1");
                  hmac.init(new javax.crypto.spec.SecretKeySpec(
@@ -58,17 +58,19 @@ http://dojotoolkit.org/documentation/tutorials/1.9/themes_buttons_textboxes/
                  hmac.doFinal(policy.getBytes("UTF-8")))
                     .replaceAll("\n", "");
                 %>
-				<form method="post" action="/Upload" id="myForm"
+				<form method="post" action="https://otherbrane.s3.amazonaws.com/" id="myForm"
 					enctype="multipart/form-data">
 					<fieldset>
-						<legend>Form Post Test</legend>
-						<input type="hidden" name="key" value="uploads/${filename}">
+						<legend>Upload model</legend>
+						<input type="hidden" name="key" value="world1/area1/3d/${filename}Koala.jpg">
 						<input type="hidden" name="AWSAccessKeyId"
-							value="YOUR_AWS_ACCESS_KEY"> 
+							value="AKIAJ3ZLNGQLC3TNQPEQ"> 
 						<input type="hidden"
-							name="acl" value="private">
+							name="acl" value="public-read">
 						 <input type="hidden"
 							name="success_action_redirect" value="http://localhost/">
+                        <!-- <input type="hidden" name="policy_document"
+                            value="<%=policy_document%>">   -->
 						<input type="hidden" name="policy"
 							value="<%=policy%>"> 
 						<input
@@ -77,8 +79,8 @@ http://dojotoolkit.org/documentation/tutorials/1.9/themes_buttons_textboxes/
 						<!-- Include any additional input fields here -->
 
 						File to upload to S3: 
-						<input name="file" type="file"> <br>
-						<input class="browseButton" name="uploadedfile" multiple="true"
+						<!--  <input name="file" type="file"> <br> -->
+						<input class="browseButton" name="file" multiple="true"
 							type="file" dojoType="dojox.form.Uploader"
 							label="Select Some Files" id="uploader" />
 						 <input type="text"
