@@ -35,7 +35,7 @@ http://dojotoolkit.org/documentation/tutorials/1.9/themes_buttons_textboxes/
 			 -->
 				<%
                  String policy_document =
-"{\"expiration\": \"2013-08-13T00:00:00Z\"," +
+"{\"expiration\": \"2013-08-19T00:00:00Z\"," +
  "\"conditions\": [ " +
    " {\"bucket\": \"otherbrane\"}, " +
    " [\"starts-with\", \"$key\", \"world1/\"]," +
@@ -57,12 +57,14 @@ http://dojotoolkit.org/documentation/tutorials/1.9/themes_buttons_textboxes/
                  String signature = (new sun.misc.BASE64Encoder()).encode(
                  hmac.doFinal(policy.getBytes("UTF-8")))
                     .replaceAll("\n", "");
+                 String filename = "${filename}";
                 %>
 				<form method="post" action="https://otherbrane.s3.amazonaws.com/" id="myForm"
 					enctype="multipart/form-data">
 					<fieldset>
 						<legend>Upload model</legend>
-						<input type="hidden" name="key" value="world1/area1/3d/${filename}Koala.jpg">
+						<!-- <input type="hidden" name="key" value="world1/area1/3d/${filename}">  -->
+                        <input type="hidden" name="key" value="world1/area1/3d/<%=filename%>">
 						<input type="hidden" name="AWSAccessKeyId"
 							value="AKIAJ3ZLNGQLC3TNQPEQ"> 
 						<input type="hidden"
