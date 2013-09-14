@@ -1,4 +1,4 @@
-define(["scene/Actor", "models/Shoe", "models/AnimateLampComponent", "models/Lamp", "models/LampCollada"], 
+define(["scene/Actor", "models/Shoe", "models/AnimateLampComponent", "models/Lamp", "models/LampCollada", "models/BoxMan"], 
 		function(){
 			Array.max = function( array ){
 				return Math.max.apply( Math, array );
@@ -11,6 +11,7 @@ define(["scene/Actor", "models/Shoe", "models/AnimateLampComponent", "models/Lam
                     scene.addActor(new LampCollada({x: -500, y: 0, z: -500}));
                     scene.addActor(new Lamp({x: -500, y: 0, z: 500}));
                     scene.addActor(new Shoe({x: 0, y:80, z: 0}));
+                    scene.addActor(new BoxMan({x: 100, y: 80, z: -200}));
     		    }
     		};
 });
