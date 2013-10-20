@@ -54,16 +54,15 @@ function ThreeDScene(){
     light.target.position.set(0,0,0);
     scene.add(light);
     this.clock = new THREE.Clock();   
-    //var fpControls = new THREE.FirstPersonControls( camera );
-    var fpControls = new CameraControls( camera );
-//    fpControls.movementSpeed = 10;
-//    fpControls.lookSpeed = 0.01;
-//    fpControls.noFly = false;
-//    fpControls.lookVertical = true;
-//    fpControls.freeze = false;
+    var fpControls = new THREE.FirstPersonControls( camera );
+    fpControls.movementSpeed = 1000;
+    fpControls.lookSpeed = 0.125;
+    fpControls.noFly = false;
+    fpControls.lookVertical = true;
+    fpControls.freeze = false;
 	var flyControls = new THREE.FlyControls( camera );
 	flyControls.rollSpeed = 0.05;	
-	if(false){
+	if(true){
 		this.controls = fpControls;
 	} else{
 		this.controls = flyControls;

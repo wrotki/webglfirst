@@ -1,5 +1,5 @@
 define(["dojo","dojo/_base/xhr","dijit/Dialog", "scene/ThreeDebug",
-    "scene/FlyControls", "scene/RequestAnimationFrame","scene/Stats",
+    "scene/FlyControls", "scene/FirstPersonControls",  "scene/RequestAnimationFrame","scene/Stats",
     "scene/CameraControls","scene/ThreeDScene","scene/Constants","scene/Actor","scene/ColladaLoader"
     ],
 		function(){

@@ -23,7 +23,6 @@ public class CallToWeb {
             .setIntParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 3000)
             .setIntParameter(CoreConnectionPNames.SOCKET_BUFFER_SIZE, 8 * 1024)
             .setBooleanParameter(CoreConnectionPNames.TCP_NODELAY, true);
-
         httpclient.start();
 	}
 	
