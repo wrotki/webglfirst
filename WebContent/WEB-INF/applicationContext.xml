@@ -11,7 +11,8 @@
     OB.absolutePath = window.location.pathname.replace(/\/[^/]+$/, "");
      -->
     <bean id="mediaUrl" class="java.lang.String"><constructor-arg type="java.lang.String" value='/WebGLFirst'/></bean>
-    <!-- 
+    <bean id="buttonText" class="java.lang.String"><constructor-arg type="java.lang.String" value='Long pinkish elephant with a sofa shaped trunk'/></bean>
+    <!--
     <bean id="mediaUrl" class="java.lang.String"><constructor-arg type="java.lang.String" value='http://otherbrane.s3-website-us-east-1.amazonaws.com/world1/area1'/></bean>
     -->
     <bean id="webglRequest" class="webgl.Request" scope="request">

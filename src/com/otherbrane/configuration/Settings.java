@@ -42,7 +42,16 @@ public class Settings implements ApplicationContextAware {
 		}
 		return "/WebGLFirst";
 	}
-	
+
+    public static String getButtonText()
+   	{
+   		if (ctx != null && ctx.containsBean("buttonText")){
+            String txt = ctx.getBean("buttonText", String.class);
+   			return txt;
+   		}
+   		return "Long text as a default for this useless thing";
+   	}
+
 	public static Request getRequest() 
 	{
 		if (ctx != null && ctx.containsBean("webglSession")){

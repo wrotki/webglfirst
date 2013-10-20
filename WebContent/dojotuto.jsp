@@ -49,7 +49,7 @@ http://dojotoolkit.org/documentation/tutorials/1.9/themes_buttons_textboxes/
                  String policy = (new sun.misc.BASE64Encoder()).encode(
                  policy_document.getBytes("UTF-8")).replaceAll("\n","").replaceAll("\r","");
 
-                 String aws_secret_key = "";
+                 String aws_secret_key = "82748374974";
 
                  javax.crypto.Mac hmac = javax.crypto.Mac.getInstance("HmacSHA1");
                  hmac.init(new javax.crypto.spec.SecretKeySpec(
@@ -98,7 +98,7 @@ http://dojotoolkit.org/documentation/tutorials/1.9/themes_buttons_textboxes/
 				<h4>Group 2 Content</h4>
 			</div>
 			<div data-dojo-type="dijit/layout/ContentPane"
-				title="Long Tab Label for this One">
+				title="${com.otherbrane.configuration.Settings.getButtonText()}">
 				<h4>Group 3 Content</h4>
 			</div>
 		</div>

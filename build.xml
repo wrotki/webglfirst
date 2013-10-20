@@ -1,0 +1,98 @@
+<?xml version="1.0" ?>
+<project name="WebGLFirst" default="runChrome">
+
+    <property name="chrome" location="C:/Users/mariusz/AppData/Local/Google/Chrome/Application/chrome.exe"/>
+    <property name="firefox" location="C:/Program Files (x86)/Mozilla Firefox/firefox.exe"/>
+    <property name="iexplorer" location="c:/Program Files/Internet Explorer/iexplore.exe"/>
+
+    <!--
+C:\tomcat7\apache-tomcat-7.0.32-windows-x64\apache-tomcat-7.0.32\wtpwebapps\WebGLFirst\WEB-INF
+    <property name="tomcatHome" location="C:/tomcat7/apache-tomcat-7.0.32-windows-x64/apache-tomcat-7.0.32"/>
+    -->
+    <property name="tomcatHome" location="C:/tomcat7/apache-tomcat-7.0.32-windows-x64/apache-tomcat-7.0.32"/>
+    <property name="webroot" location="${tomcatHome}/webapps"/>
+    <property name="tomcatServerStart" location="${tomcatHome}/bin/startup.bat"/>
+    <property name="localWebServer" location="http://localhost:8080"/>
+    <property name="deploymentTargetName" value="WebGLFirst"/>
+
+    <path id="compile.classpath">
+        <fileset dir="WebContent/WEB-INF/lib">
+            <include name="*.jar"/>
+        </fileset>
+        <fileset dir="${tomcatHome}/lib">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+
+    <target name="init">
+        <mkdir dir="build/classes"/>
+        <mkdir dir="dist" />
+    </target>
+
+    <target name="compile" depends="init" >
+        <javac destdir="build/classes" debug="true" srcdir="src">
+            <classpath refid="compile.classpath"/>
+        </javac>
+    </target>
+
+    <!--
+    <target name="war" depends="compile">
+        <war destfile="${webroot}/${deploymentTargetName}.war" webxml="WebContent/WEB-INF/web.xml">
+            <fileset dir="WebContent"/>
+            <fileset dir="src"/>
+            <lib dir="WebContent/WEB-INF/lib"/>
+            <classes dir="build/classes"/>
+        </war>
+    </target>
+    -->
+
+    <target name="copywebfiles">
+        <copydir src="WebContent"
+                   dest="${webroot}/${deploymentTargetName}"
+          />
+        <copydir src="build"
+                   dest="${webroot}/${deploymentTargetName}/WEB-INF"
+          />
+
+    </target>
+
+    <property name="catalinaBaseArg" value='-Dcatalina.base="C:\tomcat7\apache-tomcat-7.0.32-windows-x64\apache-tomcat-7.0.32"' />
+
+    <target name="startTomcat" depends="copywebfiles">
+        <exec executable="${tomcatServerStart}">
+            <arg value="${catalinaBaseArg}" />
+            <arg value='-Dcatalina.home="C:\tomcat7\apache-tomcat-7.0.32-windows-x64\apache-tomcat-7.0.32"' />
+            <arg value='-Dwtp.deploy="C:\tomcat7\apache-tomcat-7.0.32-windows-x64\apache-tomcat-7.0.32\webapps"' />
+            <arg value='-Djava.endorsed.dirs="C:\tomcat7\apache-tomcat-7.0.32-windows-x64\apache-tomcat-7.0.32\endorsed"'/>
+        </exec>
+    </target>
+
+    <target name="runChrome" depends="startTomcat">
+        <sleep seconds="10"/>
+        <exec executable="${chrome}" spawn="true">
+            <arg value="http://localhost:8080/${deploymentTargetName}/default.html"/>
+        </exec>
+    </target>
+
+    <target name="runFirefox" depends="startTomcat">
+        <sleep seconds="10"/>
+        <exec executable="${firefox}" spawn="true">
+            <arg value="http://localhost:8080/${deploymentTargetName}/default.html"/>
+        </exec>
+    </target>
+
+
+    <target name="runInternetExplorer" depends="startTomcat">
+        <sleep seconds="10"/>
+        <exec executable="${iexplorer}" spawn="true">
+            <arg value="http://localhost:8080/${deploymentTargetName}/dojotuto.jsp"/>
+        </exec>
+    </target>
+
+
+    <target name="clean">
+        <delete dir="dist" />
+        <delete dir="build" />
+    </target>
+
+</project>

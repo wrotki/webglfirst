@@ -165,7 +165,7 @@ Chart.prototype.update = function(){
 	}
 	
 	var thisRef = this;
-    if((Date.now() - this.lastUpdated > 100)){
+    if((Date.now() - this.lastUpdated > 100000)){
         this.lastUpdated = Date.now();
         
         require(["dojo/request"], function(request){
