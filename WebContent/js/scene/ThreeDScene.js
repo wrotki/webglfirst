@@ -62,7 +62,7 @@ function ThreeDScene(){
     fpControls.freeze = false;
 	var flyControls = new THREE.FlyControls( camera );
 	flyControls.rollSpeed = 0.05;	
-	if(true){
+	if(false){
 		this.controls = fpControls;
 	} else{
 		this.controls = flyControls;
