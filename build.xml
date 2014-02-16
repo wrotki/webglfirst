@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <project name="WebGLFirst" default="runChrome">
 
-    <property name="chrome" location="C:/Users/mariusz/AppData/Local/Google/Chrome/Application/chrome.exe"/>
+    <property name="chrome" location="${chromeExe}"/>
     <property name="firefox" location="C:/Program Files (x86)/Mozilla Firefox/firefox.exe"/>
     <property name="iexplorer" location="c:/Program Files/Internet Explorer/iexplore.exe"/>
 
@@ -9,8 +9,9 @@
 C:\tomcat7\apache-tomcat-7.0.32-windows-x64\apache-tomcat-7.0.32\wtpwebapps\WebGLFirst\WEB-INF
     <property name="tomcatHome" location="C:/tomcat7/apache-tomcat-7.0.32-windows-x64/apache-tomcat-7.0.32"/>
     -->
-    <property name="tomcatHome" location="C:/tomcat7/apache-tomcat-7.0.32-windows-x64/apache-tomcat-7.0.32"/>
-    <property name="webroot" location="${tomcatHome}/webapps"/>
+    <!--<property name="tomcatHome" location="C:/tomcat7/apache-tomcat-7.0.32-windows-x64/apache-tomcat-7.0.32"/>-->
+    <!--<property name="tomcatHome" location="C:/java/apache-tomcat-7.0.34-windows-x64/apache-tomcat-7.0.34"/>-->
+    <property name="webroot" location="${tomcatHome}/wtpwebapps"/>
     <property name="tomcatServerStart" location="${tomcatHome}/bin/startup.bat"/>
     <property name="localWebServer" location="http://localhost:8080"/>
     <property name="deploymentTargetName" value="WebGLFirst"/>
@@ -56,14 +57,14 @@ C:\tomcat7\apache-tomcat-7.0.32-windows-x64\apache-tomcat-7.0.32\wtpwebapps\WebG
 
     </target>
 
-    <property name="catalinaBaseArg" value='-Dcatalina.base="C:\tomcat7\apache-tomcat-7.0.32-windows-x64\apache-tomcat-7.0.32"' />
+    <property name="catalinaBaseArg" value='-Dcatalina.base="${tomcatHome}"' />
 
     <target name="startTomcat" depends="copywebfiles">
         <exec executable="${tomcatServerStart}">
             <arg value="${catalinaBaseArg}" />
-            <arg value='-Dcatalina.home="C:\tomcat7\apache-tomcat-7.0.32-windows-x64\apache-tomcat-7.0.32"' />
-            <arg value='-Dwtp.deploy="C:\tomcat7\apache-tomcat-7.0.32-windows-x64\apache-tomcat-7.0.32\webapps"' />
-            <arg value='-Djava.endorsed.dirs="C:\tomcat7\apache-tomcat-7.0.32-windows-x64\apache-tomcat-7.0.32\endorsed"'/>
+            <arg value='-Dcatalina.home="${tomcatHome}"' />
+            <arg value='-Dwtp.deploy="${webroot}"' />
+            <arg value='-Djava.endorsed.dirs="${tomcatHome}\endorsed"'/>
         </exec>
     </target>
 
