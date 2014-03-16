@@ -1,5 +1,7 @@
 function ChartGroup(chartGroupOrigin, label, baseColor, dataGroup)
 {
+    Actor.call(this, chartGroupOrigin);
+
 	function addChartLabel(label){
 		var x = document.createElement( "canvas" );
 		var xc = x.getContext("2d");
@@ -33,10 +35,32 @@ function ChartGroup(chartGroupOrigin, label, baseColor, dataGroup)
 
 };
 
-ChartGroup.prototype.addToScene = function(scene){
-	//scene.add(this.label);
-	for(var c in this.charts){
-		this.charts[c].addToScene(scene);
-	}
-	scene.add(this.label);
+ChartGroup.prototype = Object.create(Actor.prototype);
+ChartGroup.prototype.constructor = ChartGroup;
+
+ChartGroup.prototype.initialize = function(scene) {
+    Actor.prototype.initialize.call(this, scene);
 };
+
+ChartGroup.prototype.createMeshes = function(){
+    for(var i=0; i<this.charts.length; i++){
+        this.charts[i].createMeshes();
+        this.meshes.push(this.charts[i].meshes);
+    }
+};
+ChartGroup.prototype.update = function(){
+	if(!this.meshes || ! this.meshes[0]){
+		return;
+	}
+    for(var i=0; i<this.charts.length; i++){
+        this.charts[i].update();
+    }
+};
+
+//ChartGroup.prototype.addToScene = function(scene){
+//	//scene.add(this.label);
+//	for(var c in this.charts){
+//		this.charts[c].addToScene(scene);
+//	}
+//	scene.add(this.label);
+//};

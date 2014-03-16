@@ -2,6 +2,7 @@
 <project version="4">
   <component name="AntConfiguration">
     <buildFile url="file://$PROJECT_DIR$/build.xml">
+      <customJdkName value="1.7" />
       <maximumHeapSize value="256" />
       <properties>
         <property name="tomcatHome" value="C:/java/apache-tomcat-7.0.34-windows-x64/apache-tomcat-7.0.34" />
