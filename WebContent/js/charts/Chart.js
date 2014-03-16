@@ -160,12 +160,13 @@ Chart.prototype.createMesh = function(){
 };
 
 Chart.prototype.update = function(){
+    return;
 	if(!this.meshes || ! this.meshes[0]){
 		return;
 	}
 	
 	var thisRef = this;
-    if((Date.now() - this.lastUpdated > 100000)){
+    if((Date.now() - this.lastUpdated > 1000)){
         this.lastUpdated = Date.now();
         
         require(["dojo/request"], function(request){

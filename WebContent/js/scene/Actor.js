@@ -43,9 +43,7 @@ Actor.prototype.update = function(){
       for(i=0;i<this.components.length;i++){
           this.components[i].update();
       }       
-};    
-
-
+};
 var asActor = function() {
   var prototype = Object.getPrototypeOf(this);
   this.initialize = function(scene) {
