@@ -23,12 +23,13 @@ function ChartGroup(chartGroupOrigin, label, baseColor, dataGroup)
 	};
 	
 	//addChartLabel.call(this, label);
-	var chartPosition = new THREE.Vector3(chartGroupOrigin.x, chartGroupOrigin.y, chartGroupOrigin.z);
+	var nextChartPosition = new THREE.Vector3(chartGroupOrigin.x, chartGroupOrigin.y, chartGroupOrigin.z);
 	this.charts = [];
 	var keys = Object.keys(dataGroup);
 	for (var i=0; i < keys.length; i++) {
-		chartPosition.x += i * 300;
-		chart = new Chart(chartPosition, keys[i], 0xffcc22, dataGroup[keys[i]]);
+		nextChartPosition.x += i * 300;
+	    var chartPosition = new THREE.Vector3(nextChartPosition.x, nextChartPosition.y, nextChartPosition.z);
+		var chart = new Chart(chartPosition, keys[i], 0xffcc22, dataGroup[keys[i]]);
 		this.charts.push(chart);
 	};	
 	addChartLabel.call(this, label);

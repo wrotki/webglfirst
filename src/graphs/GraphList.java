@@ -1,8 +1,16 @@
 package graphs;
 
-import lombok.Data;
+//import lombok.Data;
 
-@Data
+//@Data
 public class GraphList {
-	GraphQuery[] list;
+	private GraphQuery[] list;
+
+    public GraphQuery[] getList() {
+        return list;
+    }
+
+    public void setList(GraphQuery[] list) {
+        this.list = list;
+    }
 }

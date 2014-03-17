@@ -90,6 +90,7 @@ Chart.prototype.createMeshes = function(){
     	// }
         this.mergedGeo.computeFaceNormals();
     	var group = new THREE.Mesh( this.mergedGeo, this.material );
+    	group.position = new THREE.Vector3(this.chartOrigin.x,this.chartOrigin.y,this.chartOrigin.z);
     	group.matrixAutoUpdate = false;
     	group.updateMatrix(); 
     	this.meshes.push(group);
