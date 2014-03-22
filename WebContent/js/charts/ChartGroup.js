@@ -46,7 +46,10 @@ ChartGroup.prototype.initialize = function(scene) {
 ChartGroup.prototype.createMeshes = function(){
     for(var i=0; i<this.charts.length; i++){
         this.charts[i].createMeshes();
-        this.meshes.push(this.charts[i].meshes);
+        var graphMeshes = this.charts[i].meshes;
+        for(var j=0;j<graphMeshes.length;j++){
+            this.meshes.push(graphMeshes[j]);
+        }
     }
 };
 ChartGroup.prototype.update = function(){
