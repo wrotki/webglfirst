@@ -5,7 +5,7 @@ function ThreeDScene(){
     var container = dojo.doc.createElement( 'div' );
 	dojo.doc.body.appendChild( container );
 	this.createStats(container);
-    this.createRenderer();
+    var renderer = this.createRenderer();
 	var scene = this.scene = new THREE.Scene();
     scene.fog = new THREE.Fog( 0xffffff, 1, 100000 );
     var camera = this.createCamera(scene.position);
@@ -58,6 +58,14 @@ function ThreeDScene(){
         camera.updateProjectionMatrix();
     }
 	window.addEventListener( 'resize', onWindowResize, false );
+
+    function switchControls(){
+        this.controls = fpControls;
+    }
+	var controlsSwitch = dojo.query("select").forEach(
+        function(node, index, arr){
+	        node.addEventListener('change',switchControls);
+        });
 }
 ThreeDScene.prototype.createStats = function(container){
     var stats = this.stats = new Stats();
@@ -66,7 +74,7 @@ ThreeDScene.prototype.createStats = function(container){
 	stats.domElement.style.left = '5px';
 	stats.domElement.style.zIndex = 100;
 	container.appendChild( stats.domElement );
-}
+};
 ThreeDScene.prototype.createRenderer = function(){
     var canvasContainer = dojo.doc.createElement( 'div' );
     canvasContainer.style.position = 'absolute';
@@ -85,7 +93,8 @@ ThreeDScene.prototype.createRenderer = function(){
     renderer.domElement.style.left = '5px';
     renderer.domElement.style.border = '5px';
     canvasContainer.appendChild( renderer.domElement );
-}
+    return renderer;
+};
 ThreeDScene.prototype.createCamera = function(position){
     var viewport = dojo.window.getBox();
     var w = viewport.w - 10, h = viewport.h -10 ;
@@ -101,14 +110,13 @@ ThreeDScene.prototype.createCamera = function(position){
     //camera.rotation.y = -90 * (Math.PI / 180);
     //this.scene.add( camera );
     return camera;
-}
+};
 // Main animation loop
 ThreeDScene.prototype.animate = function(){
     requestAnimationFrame( ThreeDScene.prototype.animate );
     ThreeDScene.prototype.update.call(window.threeDScene);
     ThreeDScene.prototype.render.call(window.threeDScene);
 };
-
 ThreeDScene.prototype.update = function() {
 	this.updateActors();
 	for(var i=0;i<this.actors.length;i++){
