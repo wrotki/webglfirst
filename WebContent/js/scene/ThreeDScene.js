@@ -3,43 +3,12 @@ function ThreeDScene(){
     this.mouse = new THREE.Vector3( 0, 0, 1 );
     this.projector = new THREE.Projector();           
     var container = dojo.doc.createElement( 'div' );
-	dojo.doc.body.appendChild( container );	
-    var stats = this.stats = new Stats();
-	stats.domElement.style.position = 'absolute';
-	stats.domElement.style.top = '5px';
-	stats.domElement.style.left = '5px';
-	stats.domElement.style.zIndex = 100;
-	container.appendChild( stats.domElement );
-    var viewport = dojo.window.getBox();
-    var w = viewport.w - 10, h = viewport.h -10 ;
-    var canvasContainer = dojo.doc.createElement( 'div' );
-    canvasContainer.style.position = 'absolute';
-    canvasContainer.style.top = '5px';
-    canvasContainer.style.left = '5px';
-    canvasContainer.style.border = '5px';
-    canvasContainer.style.zIndex = 10;
-	dojo.doc.body.appendChild( canvasContainer );
-    var renderer = this.renderer = new THREE.WebGLRenderer();
-    renderer.sortObjects = false;
-    renderer.setSize( w, h );
-    renderer.domElement.style.position = 'absolute';
-    renderer.domElement.style.top = '5px';
-    renderer.domElement.style.left = '5px';
-    renderer.domElement.style.border = '5px';
-    canvasContainer.appendChild( renderer.domElement );
+	dojo.doc.body.appendChild( container );
+	this.createStats(container);
+    this.createRenderer();
 	var scene = this.scene = new THREE.Scene();
-    scene.fog = new THREE.Fog( 0xffffff, 1, 100000 );    
-    var camera = this.camera = new THREE.PerspectiveCamera( 45, w / h, 1, 150000 );
-    // camera = new THREE.OrthographicCamera( -1, 1, 1,
-	// -1, 0.1, 100.0 );
-    camera.position.x = 0;
-    camera.position.y = 100;
-    camera.position.z = 1000;
-    camera.lookAt(scene.position);    
-    //camera.target.position.copy( scene.position );
-    //camera.lookAt(new THREE.Vector3( 0, 0, 0 ));
-    //camera.rotation.y = -90 * (Math.PI / 180);
-    //this.scene.add( camera );   
+    scene.fog = new THREE.Fog( 0xffffff, 1, 100000 );
+    var camera = this.createCamera(scene.position);
     var light = new THREE.DirectionalLight();
     //light.color = 0x00FFFF;
     light.position.set( 170, 330, 160 );
@@ -90,8 +59,49 @@ function ThreeDScene(){
     }
 	window.addEventListener( 'resize', onWindowResize, false );
 }
-
-
+ThreeDScene.prototype.createStats = function(container){
+    var stats = this.stats = new Stats();
+	stats.domElement.style.position = 'absolute';
+	stats.domElement.style.top = '55px';
+	stats.domElement.style.left = '5px';
+	stats.domElement.style.zIndex = 100;
+	container.appendChild( stats.domElement );
+}
+ThreeDScene.prototype.createRenderer = function(){
+    var canvasContainer = dojo.doc.createElement( 'div' );
+    canvasContainer.style.position = 'absolute';
+    canvasContainer.style.top = '55px';
+    canvasContainer.style.left = '5px';
+    canvasContainer.style.border = '5px';
+    canvasContainer.style.zIndex = 10;
+	dojo.doc.body.appendChild( canvasContainer );
+    var viewport = dojo.window.getBox();
+    var w = viewport.w - 10, h = viewport.h -10 ;
+    var renderer = this.renderer = new THREE.WebGLRenderer();
+    renderer.sortObjects = false;
+    renderer.setSize( w, h );
+    renderer.domElement.style.position = 'absolute';
+    renderer.domElement.style.top = '5px';
+    renderer.domElement.style.left = '5px';
+    renderer.domElement.style.border = '5px';
+    canvasContainer.appendChild( renderer.domElement );
+}
+ThreeDScene.prototype.createCamera = function(position){
+    var viewport = dojo.window.getBox();
+    var w = viewport.w - 10, h = viewport.h -10 ;
+    var camera = this.camera = new THREE.PerspectiveCamera( 45, w / h, 1, 150000 );
+    // camera = new THREE.OrthographicCamera( -1, 1, 1,
+	// -1, 0.1, 100.0 );
+    camera.position.x = 0;
+    camera.position.y = 100;
+    camera.position.z = 1000;
+    camera.lookAt(position);
+    //camera.target.position.copy( scene.position );
+    //camera.lookAt(new THREE.Vector3( 0, 0, 0 ));
+    //camera.rotation.y = -90 * (Math.PI / 180);
+    //this.scene.add( camera );
+    return camera;
+}
 // Main animation loop
 ThreeDScene.prototype.animate = function(){
     requestAnimationFrame( ThreeDScene.prototype.animate );

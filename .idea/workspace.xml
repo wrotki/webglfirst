@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2347d329-dd6f-4317-b926-8ea955d098fe" name="Default" comment="Added Colada model instancing&#10;&#10;And some initial basic interfaces for model behavior&#10;# Please enter the commit message for your changes. Lines starting&#10;# with '#' will be ignored, and an empty message aborts the commit.&#10;# On branch master&#10;# Changes to be committed:&#10;#   (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)&#10;#&#10;#&#9;modified:   .idea/workspace.xml&#10;#&#9;modified:   WebContent/js/models/BoxMan.js&#10;#&#9;new file:   WebContent/js/models/BoxManBehaviorComponent.js&#10;#&#9;modified:   WebContent/js/models/main.js&#10;#&#9;new file:   WebContent/js/scene/Functions.js&#10;#&#9;modified:   WebContent/js/scene/main.js&#10;#&#9;modified:   build.xml&#10;#&#10;">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/js/scene/Actor.js" afterPath="$PROJECT_DIR$/WebContent/js/scene/Actor.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/js/charts/Chart.js" afterPath="$PROJECT_DIR$/WebContent/js/charts/Chart.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/js/charts/ChartGroup.js" afterPath="$PROJECT_DIR$/WebContent/js/charts/ChartGroup.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/ant.xml" afterPath="$PROJECT_DIR$/.idea/ant.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/js/charts/main.js" afterPath="$PROJECT_DIR$/WebContent/js/charts/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+    <list default="true" id="2347d329-dd6f-4317-b926-8ea955d098fe" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/js/scene/ThreeDScene.js" afterPath="$PROJECT_DIR$/WebContent/js/scene/ThreeDScene.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebGLFirst.iml" afterPath="$PROJECT_DIR$/WebGLFirst.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/default.html" afterPath="$PROJECT_DIR$/WebContent/default.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="WebGLFirst.iws" />
@@ -81,55 +78,37 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="BoxMan.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WebContent/js/models/BoxMan.js">
+      <file leaf-file-name="build.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/build.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="20" max-vertical-offset="748">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1802">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ChartGroup.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/WebContent/js/charts/ChartGroup.js">
+      <file leaf-file-name="ThreeDScene.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/WebContent/js/scene/ThreeDScene.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1224">
+            <state line="65" column="40" selection-start="2276" selection-end="2276" vertical-scroll-proportion="0.5707434" vertical-offset="867" max-vertical-offset="3060">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WebContent/js/charts/main.js">
+      <file leaf-file-name="default.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WebContent/default.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="45" selection-start="1055" selection-end="1055" vertical-scroll-proportion="0.0" vertical-offset="391" max-vertical-offset="544">
+            <state line="59" column="9" selection-start="1683" selection-end="1683" vertical-scroll-proportion="-23.923077" vertical-offset="381" max-vertical-offset="1139">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Chart.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WebContent/js/charts/Chart.js">
+      <file leaf-file-name="FirstPersonControls.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WebContent/js/scene/FirstPersonControls.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="162" column="11" selection-start="4805" selection-end="4805" vertical-scroll-proportion="0.0" vertical-offset="2348" max-vertical-offset="3366">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Floor.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WebContent/js/floor/Floor.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="28" selection-start="241" selection-end="253" vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="646">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Actor.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WebContent/js/scene/Actor.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="0" selection-start="203" selection-end="250" vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="1564">
+            <state line="181" column="0" selection-start="3413" selection-end="3413" vertical-scroll-proportion="0.0" vertical-offset="2720" max-vertical-offset="4947">
               <folding />
             </state>
           </provider>
@@ -150,7 +129,6 @@
       <list>
         <option value="$PROJECT_DIR$/src/webgl/CallToWeb.java" />
         <option value="$PROJECT_DIR$/build.xml" />
-        <option value="$PROJECT_DIR$/WebContent/js/scene/ThreeDScene.js" />
         <option value="$PROJECT_DIR$/WebContent/js/scene/main.js" />
         <option value="$PROJECT_DIR$/WebContent/js/scene/Functions.js" />
         <option value="$PROJECT_DIR$/WebContent/js/models/BoxMan.js" />
@@ -158,9 +136,18 @@
         <option value="$PROJECT_DIR$/WebContent/js/models/BoxManBehaviorComponent.js" />
         <option value="$PROJECT_DIR$/WebContent/js/scene/Actor.js" />
         <option value="$PROJECT_DIR$/WebContent/js/charts/main.js" />
-        <option value="$PROJECT_DIR$/WebContent/js/charts/ChartGroup.js" />
         <option value="$PROJECT_DIR$/WebContent/js/charts/Chart.js" />
+        <option value="$PROJECT_DIR$/WebContent/js/charts/ChartGroup.js" />
+        <option value="$PROJECT_DIR$/WebContent/default.html" />
+        <option value="$PROJECT_DIR$/WebContent/js/scene/ThreeDScene.js" />
       </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
     </option>
   </component>
   <component name="MavenProjectNavigator">
@@ -238,6 +225,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -480,7 +468,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -515,6 +502,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="FullScreen" value="false" />
+    <property name="SearchEverywhereHistory" value="" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin" singleton="true">
@@ -529,6 +517,19 @@
       <option name="SHMEM_ADDRESS" value="javadebug" />
       <option name="HOST" value="localhost" />
       <option name="PORT" value="5005" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
@@ -556,19 +557,6 @@
       <envs />
       <properties />
       <listeners />
-      <method />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -635,6 +623,11 @@
       <created>1388296124911</created>
       <updated>1388296124911</updated>
     </task>
+    <task id="LOCAL-00001" summary="Start updating ChartGroup to the new API">
+      <created>1394933476346</created>
+      <updated>1394933476346</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -646,24 +639,24 @@
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32871014" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21393442" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21387696" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.40499306" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32871014" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33148405" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329105" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.39484978" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21888413" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18311875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33167496" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -678,6 +671,8 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
+    <MESSAGE value="Start updating ChartGroup to the new API" />
+    <option name="LAST_COMMIT_MESSAGE" value="Start updating ChartGroup to the new API" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -701,30 +696,6 @@
     </buildFile>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/WebContent/js/scene/Actor.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="51" selection-start="421" selection-end="448" vertical-scroll-proportion="0.0" vertical-offset="187" max-vertical-offset="1598">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/js/models/BoxMan.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="0" selection-start="1499" selection-end="1499" vertical-scroll-proportion="0.0" vertical-offset="277" max-vertical-offset="748">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/js/models/BoxManBehaviorComponent.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="7" selection-start="1219" selection-end="1219" vertical-scroll-proportion="0.0" vertical-offset="195" max-vertical-offset="1037" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/js/skybox/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="221" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/js/models/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="8" column="86" selection-start="579" selection-end="579" vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="306" />
@@ -875,11 +846,6 @@
         <state line="30" column="0" selection-start="978" selection-end="1030" vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="731" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/js/scene/ThreeDScene.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="149" column="37" selection-start="5166" selection-end="5177" vertical-scroll-proportion="-5.269231" vertical-offset="2396" max-vertical-offset="2890" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/js/scene/Constants.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="5" column="2" selection-start="1" selection-end="127" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="187" />
@@ -895,11 +861,6 @@
         <state line="2" column="81" selection-start="249" selection-end="249" vertical-scroll-proportion="0.072052404" vertical-offset="1" max-vertical-offset="459" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/js/models/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="86" selection-start="579" selection-end="579" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="306" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/js/skybox/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="471" />
@@ -908,11 +869,6 @@
     <entry file="file://$PROJECT_DIR$/WebContent/js/skybox/SkyBox.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="28" column="32" selection-start="1835" selection-end="1850" vertical-scroll-proportion="0.0" vertical-offset="172" max-vertical-offset="714" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/js/floor/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="471" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/js/charts/ChartShaders.js">
@@ -940,13 +896,6 @@
         <state line="9" column="27" selection-start="250" selection-end="250" vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="1598" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1768">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="110" column="17" selection-start="3601" selection-end="3601" vertical-scroll-proportion="0.0" vertical-offset="1724" max-vertical-offset="3876">
@@ -968,30 +917,86 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/js/scene/Actor.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="0" selection-start="203" selection-end="250" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1564">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/js/charts/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="45" selection-start="1055" selection-end="1055" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="544">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/js/charts/Chart.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="162" column="11" selection-start="4805" selection-end="4805" vertical-scroll-proportion="0.0" vertical-offset="2348" max-vertical-offset="3366">
+        <state line="164" column="11" selection-start="4913" selection-end="4913" vertical-scroll-proportion="0.9164786" vertical-offset="2382" max-vertical-offset="3383">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/js/charts/ChartGroup.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1224">
+        <state line="9" column="36" selection-start="302" selection-end="302" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1241">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/js/scene/Actor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="0" selection-start="541" selection-end="541" vertical-scroll-proportion="0.0" vertical-offset="272" max-vertical-offset="1717">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/js/charts/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="45" selection-start="1062" selection-end="1062" vertical-scroll-proportion="0.0" vertical-offset="391" max-vertical-offset="544">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/js/demos/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="456">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/js/floor/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="221">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/js/models/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="86" selection-start="587" selection-end="587" vertical-scroll-proportion="0.30699775" vertical-offset="0" max-vertical-offset="443">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.springBeans">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="695">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1768">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/js/scene/FirstPersonControls.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="181" column="0" selection-start="3413" selection-end="3413" vertical-scroll-proportion="0.0" vertical-offset="2720" max-vertical-offset="4947">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/default.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="59" column="9" selection-start="1683" selection-end="1683" vertical-scroll-proportion="-23.923077" vertical-offset="381" max-vertical-offset="1139">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/js/scene/ThreeDScene.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="65" column="40" selection-start="2276" selection-end="2276" vertical-scroll-proportion="0.5707434" vertical-offset="867" max-vertical-offset="3060">
           <folding />
         </state>
       </provider>
