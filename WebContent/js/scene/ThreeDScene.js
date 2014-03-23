@@ -9,63 +9,49 @@ function ThreeDScene(){
 	var scene = this.scene = new THREE.Scene();
     scene.fog = new THREE.Fog( 0xffffff, 1, 100000 );
     var camera = this.createCamera(scene.position);
-    var light = new THREE.DirectionalLight();
-    //light.color = 0x00FFFF;
-    light.position.set( 170, 330, 160 );
-    scene.add(light);
-    light = new THREE.DirectionalLight();
-    light.position.set( -50, 50, 50 );
-    light.target.position.set(0,0,0);
-    scene.add(light);
-    light = new THREE.DirectionalLight();
-    //light.color = 0xFFFF00;
-    light.position.set( 50, 50, -50 );
-    light.target.position.set(0,0,0);
-    scene.add(light);
-    this.clock = new THREE.Clock();   
-    var fpControls = new THREE.FirstPersonControls( camera );
-    fpControls.movementSpeed = 1000;
-    fpControls.lookSpeed = 0.125;
-    fpControls.noFly = false;
-    fpControls.lookVertical = true;
-    fpControls.freeze = false;
-	var flyControls = new THREE.FlyControls( camera );
-	flyControls.rollSpeed = 0.05;	
-	if(false){
-		this.controls = fpControls;
-	} else{
-		this.controls = flyControls;
-	}
-	this.actors = [];
-	this.animations = [];	
-	
+    this.createLights();
+    this.clock = new THREE.Clock();
+    this.createControls(camera);
+
     var SCALE = 0.7;
     var MARGIN = 0;
-    
     var WIDTH = window.innerWidth;
     var HEIGHT = window.innerHeight - 2 * MARGIN;
     function onWindowResize( event ) {
         windowHalfX = window.innerWidth / 2;
         windowHalfY = window.innerHeight / 2;
-    
         WIDTH = window.innerWidth;
         HEIGHT = window.innerHeight - 2 * MARGIN;
-    
         //effectSSAO.uniforms[ 'size' ].value.set( Math.floor( SCALE * WIDTH ), Math.floor( SCALE * HEIGHT ) );
-    
         renderer.setSize( WIDTH, HEIGHT );
         camera.aspect = WIDTH / HEIGHT;
         camera.updateProjectionMatrix();
     }
 	window.addEventListener( 'resize', onWindowResize, false );
 
+    var thisScene = this;
     function switchControls(){
-        this.controls = fpControls;
+        // State pattern
+        var tmpControls = thisScene.backupControls;
+        thisScene.backupControls = thisScene.controls;
+        thisScene.controls = tmpControls;
+        return true;
     }
 	var controlsSwitch = dojo.query("select").forEach(
         function(node, index, arr){
 	        node.addEventListener('change',switchControls);
+	        node.addEventListener('click',function(){
+	            console.log('click');
+	            return true;
+	        });
+	        node.addEventListener('focus',function(){
+	            console.log('focus');
+	            return true;
+	        });
         });
+
+	this.actors = [];
+	this.animations = [];
 }
 ThreeDScene.prototype.createStats = function(container){
     var stats = this.stats = new Stats();
@@ -110,6 +96,33 @@ ThreeDScene.prototype.createCamera = function(position){
     //camera.rotation.y = -90 * (Math.PI / 180);
     //this.scene.add( camera );
     return camera;
+};
+ThreeDScene.prototype.createControls = function(camera){
+    var fpControls = new THREE.FirstPersonControls( camera );
+    fpControls.movementSpeed = 1000;
+    fpControls.lookSpeed = 0.125;
+    fpControls.noFly = false;
+    fpControls.lookVertical = true;
+    fpControls.freeze = false;
+	var flyControls = new THREE.FlyControls( camera );
+	flyControls.rollSpeed = 0.05;
+    this.controls = fpControls;
+    this.backupControls = flyControls;
+};
+ThreeDScene.prototype.createLights = function(){
+    var light = new THREE.DirectionalLight();
+    //light.color = 0x00FFFF;
+    light.position.set( 170, 330, 160 );
+    this.scene.add(light);
+    light = new THREE.DirectionalLight();
+    light.position.set( -50, 50, 50 );
+    light.target.position.set(0,0,0);
+    this.scene.add(light);
+    light = new THREE.DirectionalLight();
+    //light.color = 0xFFFF00;
+    light.position.set( 50, 50, -50 );
+    light.target.position.set(0,0,0);
+    this.scene.add(light);
 };
 // Main animation loop
 ThreeDScene.prototype.animate = function(){
