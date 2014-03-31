@@ -17,7 +17,12 @@ function BoxMan(origin)
 BoxMan.prototype = Object.create(Actor.prototype);
 BoxMan.prototype.constructor = BoxMan;
 BoxMan.prototype.modelUrl = path + "/3d/BoxMan.dae";
-BoxMan.prototype.modelLoader = new THREE.ColladaLoader();
+BoxMan.prototype.colladaLoader = new THREE.ColladaLoader();
+BoxMan.prototype.modelLoader = {
+     load: function(modelUrl, modelCallback){
+        BoxMan.prototype.colladaLoader.load(modelUrl, modelCallback /*, BoxMan.prototype.waiters */)
+     }
+}
 BoxMan.prototype.modelLoader.options.convertUpAxis = true;
 BoxMan.prototype.modelCallback =  function ( collada ) {
     // Grab the collada scene data:
@@ -28,6 +33,9 @@ BoxMan.prototype.modelCallback =  function ( collada ) {
     dae.scale.x = dae.scale.y = dae.scale.z = 25.0;
     BoxMan.prototype.colladaModel = dae;        
     BoxMan.prototype.addWaiters(); // Depends on the global window.OtherBrane.threeDScene
+};
+BoxMan.prototype.initialize = function(scene) {
+    Actor.prototype.initialize.call(this, scene);
 };
 BoxMan.prototype.createMeshes = function(){
     var meshProto = BoxMan.prototype.colladaModel.children[1];
