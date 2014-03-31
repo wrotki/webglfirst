@@ -18,34 +18,37 @@ Actor.prototype.modelLoader = {
     }
 };
 Actor.prototype.modelCallback = function(geometry, materials) {
-    Actor.prototype.addWaiters(); // Depends on the global window.OtherBrane.threeDScene
+    Actor.prototype.addWaiters();
 };
 Actor.prototype.initialize = function(scene) {
-        this.scene = scene; 
-        // prototype.model is initialized by the first instance and shared by others, need to handle a potential race
-        var prototype = Object.getPrototypeOf(this);
-        this.state = ACTOR_STATE.MODEL_REQUESTED;
-        if(prototype.waiters == null){
-            prototype.waiters = [];
-        }
-        this.waiters.push(this);
-        if(!prototype.modelRequested) {
-            prototype.modelRequested = true;
-            prototype.modelLoader.load(prototype.modelUrl, prototype.modelCallback);
-        }
-        this.initialized = true;
-        return this;
-};
-Actor.prototype.addWaiters = function(){
+    // prototype.model is initialized by the first instance and shared by others, need to handle a potential race
     var prototype = Object.getPrototypeOf(this);
-    var waiters = prototype.waiters;
+    Actor.prototype.scene = scene;
+    this.state = ACTOR_STATE.MODEL_REQUESTED;
+    if(prototype.waiters == null){
+        prototype.waiters = [];
+    }
+    prototype.waiters.push(this);
+    if(!prototype.modelRequested) {
+        prototype.modelRequested = true;
+        prototype.modelLoader.load(prototype.modelUrl, prototype.modelCallback);
+    }
+    this.initialized = true;
+    return this;
+};
+Actor.prototype.addWaiters = function(typeWaiters){
+//    var prototype = Object.getPrototypeOf(this);
+    var waiters = typeWaiters;
+    if(!waiters){
+        waiters = prototype.waiters;
+    }
     for(var i=0;i<waiters.length;i++){
         var actor = waiters[i];
         actor.state = ACTOR_STATE.MODEL_LOADED;
         actor.meshesCreated = actor.createMeshes();
         for(var m=0;m<actor.meshes.length;m++){
             actor.meshes[m].parentActor = actor;// For debugging
-		    this.scene.scene.add(actor.meshes[m]);
+		    Actor.prototype.scene.scene.add(actor.meshes[m]);
         }
         actor.initialized = true;
         // TODO consider removing the threeDScene global to enable multiple scenes and renderers on the page

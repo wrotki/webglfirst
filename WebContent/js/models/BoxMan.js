@@ -18,12 +18,12 @@ BoxMan.prototype = Object.create(Actor.prototype);
 BoxMan.prototype.constructor = BoxMan;
 BoxMan.prototype.modelUrl = path + "/3d/BoxMan.dae";
 BoxMan.prototype.colladaLoader = new THREE.ColladaLoader();
+BoxMan.prototype.colladaLoader.options.convertUpAxis = true;
 BoxMan.prototype.modelLoader = {
      load: function(modelUrl, modelCallback){
-        BoxMan.prototype.colladaLoader.load(modelUrl, modelCallback /*, BoxMan.prototype.waiters */)
+        BoxMan.prototype.colladaLoader.load(modelUrl, modelCallback);
      }
 }
-BoxMan.prototype.modelLoader.options.convertUpAxis = true;
 BoxMan.prototype.modelCallback =  function ( collada ) {
     // Grab the collada scene data:
     dae = collada.scene;
@@ -34,9 +34,12 @@ BoxMan.prototype.modelCallback =  function ( collada ) {
     BoxMan.prototype.colladaModel = dae;        
     BoxMan.prototype.addWaiters(); // Depends on the global window.OtherBrane.threeDScene
 };
-BoxMan.prototype.initialize = function(scene) {
-    Actor.prototype.initialize.call(this, scene);
-};
+BoxMan.prototype.addWaiters =  function ( ) {
+    Actor.prototype.addWaiters(BoxMan.prototype.waiters);
+}
+//BoxMan.prototype.initialize = function(scene) {
+//    Actor.prototype.initialize.call(this, scene);
+//};
 BoxMan.prototype.createMeshes = function(){
     var meshProto = BoxMan.prototype.colladaModel.children[1];
     var newMesh = new THREE.Mesh(meshProto.geometry, meshProto.material);
