@@ -21,20 +21,29 @@ Actor.prototype.modelCallback = function(geometry, materials) {
     Actor.prototype.addWaiters();
 };
 Actor.prototype.initialize = function(scene) {
-    // prototype.model is initialized by the first instance and shared by others, need to handle a potential race
     var prototype = Object.getPrototypeOf(this);
     Actor.prototype.scene = scene;
     this.state = ACTOR_STATE.MODEL_REQUESTED;
-    if(prototype.waiters == null){
-        prototype.waiters = [];
-    }
-    prototype.waiters.push(this);
     if(!prototype.modelRequested) {
         prototype.modelRequested = true;
         prototype.modelLoader.load(prototype.modelUrl, prototype.modelCallback);
     }
     this.initialized = true;
     return this;
+};
+Actor.prototype.addMeshesToScene = function(waiters){
+    for(var i=0;i<waiters.length;i++){
+        var actor = waiters[i];
+        actor.state = ACTOR_STATE.MODEL_LOADED;
+        actor.createMeshes();
+        for(var m=0;m<actor.meshes.length;m++){
+            actor.meshes[m].parentActor = actor;// For debugging
+		    Actor.prototype.scene.scene.add(actor.meshes[m]);
+        }
+        actor.initialized = true;
+        // TODO consider removing the threeDScene global to enable multiple scenes and renderers on the page
+//        window.OtherBrane.threeDScene.addActor(actor);
+    }
 };
 Actor.prototype.addWaiters = function(typeWaiters){
 //    var prototype = Object.getPrototypeOf(this);
