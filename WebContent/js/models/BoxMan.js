@@ -17,22 +17,48 @@ function BoxMan(origin)
 BoxMan.prototype = Object.create(Actor.prototype);
 BoxMan.prototype.constructor = BoxMan;
 BoxMan.prototype.modelUrl = path + "/3d/BoxMan.dae";
-BoxMan.prototype.modelLoader = new THREE.ColladaLoader();
-BoxMan.prototype.modelLoader.options.convertUpAxis = true;
+BoxMan.prototype.colladaLoader = new THREE.ColladaLoader();
+BoxMan.prototype.colladaLoader.options.convertUpAxis = true;
+BoxMan.prototype.modelLoader = {
+     load: function(modelUrl, modelCallback){
+        BoxMan.prototype.colladaLoader.load(modelUrl, modelCallback);
+     }
+}
 BoxMan.prototype.modelCallback =  function ( collada ) {
     // Grab the collada scene data:
     dae = collada.scene;
     // No skin applied to my model so no need for the following:
     // var skin = collada.skins[ 0 ];
     // Scale-up the model so that we can see it:
-    dae.scale.x = dae.scale.y = dae.scale.z = 25.0;
-    BoxMan.prototype.colladaModel = dae;        
+//    dae.scale.x = dae.scale.y = dae.scale.z = 25.0;
+    dae.scale.x = dae.scale.y = dae.scale.z = 2.5000;
+    BoxMan.prototype.colladaModel = dae;
     BoxMan.prototype.addWaiters(); // Depends on the global window.OtherBrane.threeDScene
+};
+BoxMan.prototype.addWaiters =  function () {
+    Actor.prototype.addMeshesToScene(BoxMan.prototype.waiters);
+};
+BoxMan.prototype.initialize = function(scene) {
+    Actor.prototype.scene = scene;
+    var prototype = BoxMan.prototype;
+    if(!prototype.waiters) {
+        prototype.waiters = [];
+    }
+    prototype.waiters.push(this);
+//    Actor.prototype.initialize.call(this, scene);
+    this.state = ACTOR_STATE.MODEL_REQUESTED;
+    if(!prototype.modelRequested) {
+        prototype.modelRequested = true;
+        prototype.modelLoader.load(prototype.modelUrl,
+            prototype.modelCallback);
+    }
+    this.initialized = true;
 };
 BoxMan.prototype.createMeshes = function(){
     var meshProto = BoxMan.prototype.colladaModel.children[1];
     var newMesh = new THREE.Mesh(meshProto.geometry, meshProto.material);
     newMesh.position.set( this.origin.x, this.origin.y, this.origin.z );
+    newMesh.scale.set( 5, 5, 5 );
     this.meshes.push(newMesh);
 	return true;
 };

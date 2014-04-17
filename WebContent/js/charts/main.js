@@ -21,7 +21,7 @@ define(["charts/ChartShaders", "charts/Chart","charts/ChartGroup"],
 //                    scene.addActor(chart);
                     chartPosition = {x:10,y:10,z:-10} ;
                     chartGroup = new ChartGroup(chartPosition,"US",0x88ffaa,chartData);
-                    scene.addActor(chartGroup);
+//                    scene.addActor(chartGroup);
                 }
             };
 });
